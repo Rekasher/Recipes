@@ -4,6 +4,7 @@ import {useContext} from "react";
 import {RecipeContext} from "../../components/Context/Recipe/CreateContext/RecipeContext.tsx";
 import {useGetRecipe} from "../../services/getRecipeInfo/getRecipeInfo.tsx";
 import {Ingredient, Recipe} from "../../types/recipeType.ts";
+import {Spinner} from "../../components/Spinner/Spinner.tsx";
 
 const RecipePage = () => {
     const { recipeContext } = useContext(RecipeContext);
@@ -14,7 +15,7 @@ const RecipePage = () => {
         return (
             <>
                 <NavigationBar />
-                <div className="loading">Loading...</div>
+                <div className="loading"><Spinner/></div>
             </>
         );
     }
@@ -50,7 +51,7 @@ const RecipePage = () => {
     }
 
     return (
-        <>
+        <div className='recipePageContainer'>
             <NavigationBar />
             <div className="main">
                 <div className="preview">
@@ -84,7 +85,7 @@ const RecipePage = () => {
                 </ul>
 
             </div>
-        </>
+        </div>
     );
 };
 

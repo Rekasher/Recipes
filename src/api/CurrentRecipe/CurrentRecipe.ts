@@ -1,13 +1,13 @@
-// search by id from allRecipes
+import {api} from "../api.ts";
 
 const getRecipeInfo = async (id: string) => {
-
-    const apiKey = import.meta.env.VITE_API_KEY;
-    const dataLink = `https://forkify-api.herokuapp.com/api/v2/recipes/${id}?key=${apiKey}`;
-
-    return await fetch(dataLink)
-        .then((res) => res.json())
-        .catch((err) => console.log(err.message));
+    try{
+        const apiKey = import.meta.env.VITE_API_KEY;
+        const dataLink = `https://forkify-api.herokuapp.com/api/v2/recipes/${id}?key=${apiKey}`;
+        return await api.get(dataLink).then((res) => res.data);
+    }catch(err){
+        console.error(`Bad request: ${err}`);
+    }
 }
 
 export { getRecipeInfo }

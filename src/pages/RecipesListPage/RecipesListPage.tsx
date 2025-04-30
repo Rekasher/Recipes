@@ -5,6 +5,7 @@ import {DishCard} from "../../components/Cards/DishCard.tsx";
 import {useGetAllRecipes} from "../../services/getAllRecipes/getAllRecipes.ts";
 import {useContext} from "react";
 import {DishNameContext} from "../../components/Context/Dish/CreateContext/DishNameContext.tsx";
+import {Spinner} from "../../components/Spinner/Spinner.tsx";
 
 
 const RecipesListPage = () => {
@@ -15,7 +16,7 @@ const RecipesListPage = () => {
         return (
             <>
                 <NavigationBar />
-                <div className="loading">Loading...</div>
+                <div className="loading"><Spinner/></div>
             </>
         );
     }

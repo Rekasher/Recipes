@@ -1,15 +1,11 @@
-/* RecipePage.css */
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
+.recipePageContainer {
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .main {
     max-width: 1000px;
-    margin: 50px auto;
+    margin: 100px auto;
     padding: 20px;
     background: #ffffff;
     border-radius: 16px;
@@ -130,12 +126,4 @@ ul li::before {
     display: inline-block;
     width: 1em;
     margin-left: -1em;
-}
-
-.loading,
-.error {
-    text-align: center;
-    font-size: 18px;
-    color: #666;
-    margin-top: 40px;
 }

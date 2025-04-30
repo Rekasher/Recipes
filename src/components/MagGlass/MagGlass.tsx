@@ -1,7 +1,7 @@
 import React from "react";
 
 type PropMagGlass = {
-    callback: () => void;
+    callback: (() => void) | null;
 }
 
 const MagGlass: React.FC<PropMagGlass> = ({callback}) => {
@@ -15,7 +15,7 @@ const MagGlass: React.FC<PropMagGlass> = ({callback}) => {
                 height="5vh"
                 fill="currentColor"
                 viewBox="0 0 24 24"
-                onClick={callback}
+                onClick={callback!}
             >
                 <path d="M21 20l-5.7-5.7a7 7 0 1 0-1.4 1.4L20 21zM10 16a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/>
             </svg>

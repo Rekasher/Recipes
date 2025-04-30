@@ -3,6 +3,7 @@ import {RoutePath} from "../../routes/enum/routesEnum.ts";
 import {useNavigate} from "react-router-dom";
 import {Home} from "../Home/Home.tsx";
 import {Favorite} from "../Favorite/Favorite.tsx";
+import {MagGlass} from "../MagGlass/MagGlass.tsx";
 
 const NavigationBar = () => {
 
@@ -19,7 +20,7 @@ const NavigationBar = () => {
                     className="navbar-logo"
                     onClick={() => handleNavigate(RoutePath.SEARCH)}
                 >
-                    Recipe
+                   <MagGlass callback={null}/>
                 </div>
                 <div className="options">
                     <Home/>
