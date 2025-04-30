@@ -1,20 +1,21 @@
 import './DishCard.css'
-import React from "react";
+import React, {useContext} from "react";
 import {useNavigate} from "react-router-dom";
-import {RoutePath} from "../../../routes/enum/routesEnum.ts";
-import {Dish} from "../../../types/dishType.ts";
-
+import {RoutePath} from "../../routes/enum/routesEnum.ts";
+import {Dish} from "../../types/dishType.ts";
+import {RecipeContext} from "../Context/Recipe/CreateContext/RecipeContext.tsx";
 
 type PropDishCard = {
     dish: Dish
 }
 
 const DishCard: React.FC<PropDishCard> = ({dish}) => {
-    const {image_url, title, publisher} = dish;
+    const {image_url, title, publisher, id} = dish;
     const navigate = useNavigate();
-
+    const {setRecipeContext} = useContext(RecipeContext);
 
     const handleNavigate = () =>{
+        setRecipeContext(id)
         navigate(RoutePath.RECIPE);
     }
 

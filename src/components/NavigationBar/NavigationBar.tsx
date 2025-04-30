@@ -1,6 +1,8 @@
 import './NavigationBar.css';
 import {RoutePath} from "../../routes/enum/routesEnum.ts";
 import {useNavigate} from "react-router-dom";
+import {Home} from "../Home/Home.tsx";
+import {Favorite} from "../Favorite/Favorite.tsx";
 
 const NavigationBar = () => {
 
@@ -19,12 +21,9 @@ const NavigationBar = () => {
                 >
                     Recipe
                 </div>
-                <div
-                    className="navbar-logo"
-                    onClick={()=> handleNavigate(RoutePath.LIST)}
-                    style={{cursor: "pointer"}}
-                >
-                    LIST
+                <div className="options">
+                    <Home/>
+                    <Favorite/>
                 </div>
             </div>
         </header>

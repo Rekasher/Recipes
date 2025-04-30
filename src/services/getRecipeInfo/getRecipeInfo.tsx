@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import {getAllRecipes} from "../../api/AllRecipes/AllRecipes.ts";
+import {getRecipeInfo} from "../../api/CurrentRecipe/CurrentRecipe.ts";
 
-const useGetAllRecipes = (dish: string) => {
-    const [recipes, setRecipes] = useState([]);
+const useGetRecipe = (id: string) => {
+    const [recipeData, setRecipeData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<null | string>(null);
 
@@ -10,9 +10,9 @@ const useGetAllRecipes = (dish: string) => {
         setLoading(true);
         setError(null);
 
-        getAllRecipes(dish)
+        getRecipeInfo(id)
             .then((info)=> {
-                setRecipes(info!.data!.recipes);
+                setRecipeData(info!.data!.recipe);
             })
             .catch((err) =>{
                 setError(err.message || "Failed request");
@@ -22,7 +22,7 @@ const useGetAllRecipes = (dish: string) => {
             });
     },[]);
 
-    return {data: recipes, loading, error};
+    return {recipeData, loading, error};
 }
 
-export { useGetAllRecipes };
+export { useGetRecipe };

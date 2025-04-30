@@ -3,13 +3,16 @@ import "./main.css"
 import { createRoot } from 'react-dom/client'
 import {RouterProvider} from "react-router-dom";
 import {router} from "./routes/routes.tsx";
-import {DishProvider} from "./components/Context/Dish/ContextProvider/DishProvider.tsx";
+import {DishNameProvider} from "./components/Context/Dish/ContextProvider/DishNameProvider.tsx";
+import {RecipeProvider} from "./components/Context/Recipe/ContextProvider/RecipeProvider.tsx";
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-      <DishProvider>
-          <RouterProvider router={router}/>
-      </DishProvider>
+      <DishNameProvider>
+          <RecipeProvider>
+              <RouterProvider router={router}/>
+          </RecipeProvider>
+      </DishNameProvider>
   </StrictMode>,
 )

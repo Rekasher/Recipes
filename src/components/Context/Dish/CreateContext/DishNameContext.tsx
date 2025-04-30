@@ -5,11 +5,11 @@ export interface DishContextType {
     setDishContext: (dish: string | null) => void;
 }
 
-const DishContext = createContext<DishContextType>({
+const DishNameContext = createContext<DishContextType>({
     dishContext: null,
     setDishContext: () => {},
 });
 
-export {DishContext};
+export {DishNameContext};
 
 

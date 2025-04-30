@@ -3,6 +3,7 @@ enum RoutePath {
     SEARCH = "/search",
     LIST = "/list",
     RECIPE = "/recipe",
+    FAVORITE = "/favorite",
 }
 
 export { RoutePath }

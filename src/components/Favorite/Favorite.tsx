@@ -1,14 +1,24 @@
-
+import {RoutePath} from "../../routes/enum/routesEnum.ts";
+import {useNavigate} from "react-router-dom";
 
 const Favorite = () => {
+
+    const navigate = useNavigate();
+
+    const handleNavigate = (path: string) => {
+        navigate(path);
+    }
+
     return (
-        <div className="Favorite">
-            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
-                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <div className="favorite"
+             onClick={()=> handleNavigate(RoutePath.FAVORITE)}
+             style={{cursor: "pointer"}}>
+            <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                 <path
-                    d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z"
-                    fill-rule="nonzero"/>
+                    d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z"/>
             </svg>
+
         </div>
     );
 };

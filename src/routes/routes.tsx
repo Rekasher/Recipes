@@ -3,6 +3,7 @@ import {RoutePath} from "./enum/routesEnum.ts";
 import {SearchPage} from "../pages/SearchPage/SearchPage.tsx";
 import {RecipesListPage} from "../pages/RecipesListPage/RecipesListPage.tsx";
 import {RecipePage} from "../pages/RecipePage/RecipePage.tsx";
+import {FavoriteRecipesPage} from "../pages/FavoriteRecipesPage/FavoriteRecipesPage.tsx";
 
 const router = createBrowserRouter([
 
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     {
         path: RoutePath.RECIPE,
         element: <RecipePage/>
+    },
+    {
+        path: RoutePath.FAVORITE,
+        element: <FavoriteRecipesPage/>
     }
 
 ]);
