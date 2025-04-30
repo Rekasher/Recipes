@@ -4,14 +4,25 @@ import {Dish} from "../../types/dishType.ts";
 import {DishCard} from "./Cards/DishCard.tsx";
 import {useGetAllRecipes} from "../../services/getAllRecipes/getAllRecipes.ts";
 import {useContext} from "react";
-import {DishContext} from "../../components/Context/DishContext/DishContext.tsx";
+import {DishContext} from "../../components/Context/Dish/CreateContext/DishContext.tsx";
 
 
 const RecipesListPage = () => {
 
-    const {dish} = useContext(DishContext);
+    const {dishContext} = useContext(DishContext);
 
-    const dishesInfo = useGetAllRecipes(dish!);
+    if (!dishContext){
+        return (
+            <>
+                <NavigationBar/>
+                <div className="noDishes">
+                    No dishes found.
+                </div>
+            </>
+        );
+    }
+
+    const dishesInfo = useGetAllRecipes(dishContext!);
 
     return (
         <>

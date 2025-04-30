@@ -3,7 +3,8 @@ import "./main.css"
 import { createRoot } from 'react-dom/client'
 import {RouterProvider} from "react-router-dom";
 import {router} from "./routes/routes.tsx";
-import {DishProvider} from "./components/Context/DishProvider/DishProvider.tsx";
+import {DishProvider} from "./components/Context/Dish/ContextProvider/DishProvider.tsx";
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
