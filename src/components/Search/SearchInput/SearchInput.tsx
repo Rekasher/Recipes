@@ -18,7 +18,8 @@ const SearchInput: React.FC<PropSearchInput> = ({dish, inputDish}) => {
                 className='search-input-text'
                 onChange={handleChangeInput}
                 value={dish || ''}
-                placeholder='Search...'
+                placeholder='Search dish...'
+                type='search'
             >
             </input>
         </div>

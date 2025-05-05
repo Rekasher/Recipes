@@ -1,4 +1,5 @@
 import React from "react";
+import "./MagGlass.css"
 
 type PropMagGlass = {
     callback: (() => void) | null;
@@ -6,7 +7,7 @@ type PropMagGlass = {
 
 const MagGlass: React.FC<PropMagGlass> = ({callback}) => {
     return (
-        <div className='search-input-button'
+        <div className='magGlass'
              style={{cursor: 'pointer'}}
         >
             <svg

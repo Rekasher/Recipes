@@ -1,13 +1,17 @@
 import './NavigationBar.css';
 import {RoutePath} from "../../routes/enum/routesEnum.ts";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {Home} from "../Home/Home.tsx";
-import {Favorite} from "../Favorite/Favorite.tsx";
+import {FavoriteHeart} from "../FavoriteHeart/FavoriteHeart.tsx";
 import {MagGlass} from "../MagGlass/MagGlass.tsx";
+import {Search} from '../Search/Search.tsx';
 
 const NavigationBar = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const isNotSearchPage = location.pathname !== RoutePath.SEARCH;
+
 
     const handleNavigate = (path: string) => {
         navigate(path);
@@ -20,15 +24,17 @@ const NavigationBar = () => {
                     className="navbar-logo"
                     onClick={() => handleNavigate(RoutePath.SEARCH)}
                 >
-                   <MagGlass callback={null}/>
+                    <MagGlass callback={null}/>
                 </div>
+                {isNotSearchPage && (<Search/>)}
+
                 <div className="options">
                     <Home/>
-                    <Favorite/>
+                    <FavoriteHeart/>
                 </div>
             </div>
         </header>
     );
 };
 
-export {NavigationBar };
+export {NavigationBar};

@@ -6,4 +6,4 @@ enum RoutePath {
     FAVORITE = "/favorite",
 }
 
-export { RoutePath }
+export {RoutePath}

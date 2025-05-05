@@ -1,7 +1,8 @@
 import {RoutePath} from "../../routes/enum/routesEnum.ts";
 import {useNavigate} from "react-router-dom";
+import "./FavoriteHeart.css"
 
-const Favorite = () => {
+const FavoriteHeart = () => {
 
     const navigate = useNavigate();
 
@@ -11,7 +12,7 @@ const Favorite = () => {
 
     return (
         <div className="favorite"
-             onClick={()=> handleNavigate(RoutePath.FAVORITE)}
+             onClick={() => handleNavigate(RoutePath.FAVORITE)}
              style={{cursor: "pointer"}}>
             <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                  width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -23,4 +24,4 @@ const Favorite = () => {
     );
 };
 
-export {Favorite};
+export {FavoriteHeart};

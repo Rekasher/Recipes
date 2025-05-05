@@ -77,21 +77,22 @@
 }
 
 .details {
-    background-color: #007bff;
+    background-color: aquamarine;
     color: white;
 }
 
 .details:hover {
-    background-color: #0056b3;
+    background-color: #4ca388;
 }
 
-.add-to-favorite {
-    background-color: #28a745;
+.to-favorite {
+    cursor: pointer;
+    background-color: coral;
     color: white;
 }
 
-.add-to-favorite:hover {
-    background-color: #1e7e34;
+.to-favorite:hover {
+    background-color: #bd5f3c;
 }
 
 h2 {

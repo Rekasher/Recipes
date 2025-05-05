@@ -47,7 +47,6 @@ html, body {
 
 .options {
     display: flex;
-    gap: 16px; /* расстояние между Home и Favorite */
+    gap: 16px; /* расстояние между Home и FavoriteHeart */
     align-items: center;
 }
-

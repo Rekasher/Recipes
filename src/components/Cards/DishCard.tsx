@@ -1,27 +1,39 @@
 import './DishCard.css'
-import React, {useContext} from "react";
+import React from "react";
 import {useNavigate} from "react-router-dom";
 import {RoutePath} from "../../routes/enum/routesEnum.ts";
 import {Dish} from "../../types/dishType.ts";
-import {RecipeContext} from "../Context/Recipe/CreateContext/RecipeContext.tsx";
+import {StarFavorite} from "../StarFavorite/StarFavorite.tsx";
+import {Trash} from "../Trash/Trash.tsx";
+import {
+    checkTheFavoriteDishes,
+    useGetFavoriteFromTheLocal
+} from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
+import {CardBackGroundColor, CardTextColor} from "./Cards-enum/CardEnum.ts";
 
 type PropDishCard = {
-    dish: Dish
+    dish: Dish;
+    onUpdate?: () => void;
 }
 
-const DishCard: React.FC<PropDishCard> = ({dish}) => {
+const DishCard: React.FC<PropDishCard> = ({dish, onUpdate}) => {
     const {image_url, title, publisher, id} = dish;
     const navigate = useNavigate();
-    const {setRecipeContext} = useContext(RecipeContext);
+    const favoriteListDishes = useGetFavoriteFromTheLocal();
+    const isFavorite = checkTheFavoriteDishes(dish, favoriteListDishes);
+    const color = isFavorite ? CardTextColor.FAVORITE : CardTextColor.STATIC;
+    const backGroundColor = isFavorite ? CardBackGroundColor.FAVORITE : CardBackGroundColor.STATIC
 
-    const handleNavigate = () =>{
-        setRecipeContext(id)
-        navigate(RoutePath.RECIPE);
+
+    const handleNavigate = (path: string) => {
+
+        navigate(path, {state: {id: id}});
     }
 
     return (
         <>
-            <div className="card" onClick={handleNavigate}>
+            <div className="card" onClick={() => handleNavigate(RoutePath.RECIPE)}
+                 style={{color: color, backgroundColor: backGroundColor}}>
                 <div className="image-wrapper">
                     <img
                         src={image_url} alt="Image"
@@ -33,6 +45,13 @@ const DishCard: React.FC<PropDishCard> = ({dish}) => {
                     <p className="card-text">
                         {publisher}
                     </p>
+                </div>
+                <div className="card-actions">
+                    {!isFavorite ?
+                        <StarFavorite dish={dish} onUpdate={onUpdate}/>
+                        :
+                        <Trash dish={dish} onUpdate={onUpdate}/>
+                    }
                 </div>
             </div>
         </>

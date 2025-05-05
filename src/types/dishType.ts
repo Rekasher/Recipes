@@ -3,6 +3,7 @@ interface Dish {
     title: string,
     publisher: string,
     id: string,
+    color?: string,
 }
 
 export type {Dish};

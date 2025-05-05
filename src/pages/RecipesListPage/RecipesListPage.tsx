@@ -1,54 +1,39 @@
-import './RecipesListPage.css'
-import {NavigationBar} from "../../components/NavigationBar/NavigationBar.tsx";
-import {Dish} from "../../types/dishType.ts";
 import {DishCard} from "../../components/Cards/DishCard.tsx";
-import {useGetAllRecipes} from "../../services/getAllRecipes/getAllRecipes.ts";
-import {useContext} from "react";
-import {DishNameContext} from "../../components/Context/Dish/CreateContext/DishNameContext.tsx";
-import {Spinner} from "../../components/Spinner/Spinner.tsx";
-
+import {useGetAllRecipes} from "../../services/useAllRecipes/getAllRecipes.ts";
+import {Dish} from "../../types/dishType.ts";
+import './RecipesListPage.css';
+import {PageLayout} from "../PageLayot.tsx";
+import {useEffect, useState} from "react";
 
 const RecipesListPage = () => {
-    const { dishContext } = useContext(DishNameContext);
-    const { data: dishesInfo, loading, error } = useGetAllRecipes(dishContext!);
 
-    if (loading) {
-        return (
-            <>
-                <NavigationBar />
-                <div className="loading"><Spinner/></div>
-            </>
-        );
-    }
+    const {data, loading, error} = useGetAllRecipes();
+    const [dishesInfo, setDishesInfo] = useState<Dish[]>([]);
 
-    if (error) {
-        return (
-            <>
-                <NavigationBar />
-                <div className="error">{error}</div>
-            </>
-        );
-    }
+    useEffect(() => {
+        if (data) {
+            setDishesInfo(data);
+        }
+    }, [data]);
 
-    if (!dishesInfo || dishesInfo.length === 0) {
-        return (
-            <>
-                <NavigationBar />
-                <div className="noDishes">No dishes found.</div>
-            </>
-        );
+    const handleUpdate = () => {
+        setDishesInfo([...dishesInfo]);
     }
 
     return (
-        <>
-            <NavigationBar />
-            <div className="card-grid">
-                {dishesInfo.map((dish: Dish) => (
-                    <DishCard key={dish.id} dish={dish} />
-                ))}
-            </div>
-        </>
-    );
+        <PageLayout loading={loading} error={error!}>
+            {
+                (!dishesInfo || dishesInfo.length === 0) ? (
+                    <div className="noDishes">No dishes found.</div>
+                ) : (
+                    <div className="card-grid">
+                        {dishesInfo.map((dish: Dish) => (
+                            <DishCard key={dish.id} dish={dish} onUpdate={handleUpdate}/>
+                        ))}
+                    </div>
+                )
+            }
+        </PageLayout>);
 };
 
 export {RecipesListPage};
