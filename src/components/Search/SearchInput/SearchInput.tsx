@@ -15,6 +15,7 @@ const SearchInput: React.FC<PropSearchInput> = ({dishes, inputDish}) => {
     return (
         <div className="search-input-wrapper">
             <input
+                autoFocus={true}
                 className='search-input-text'
                 onChange={handleChangeInput}
                 value={dishes || ''}
