@@ -26,7 +26,7 @@ const Search = () => {
     }
 
     useEffect(() => {
-        if (dish){
+        if (dish && !isNotSearchPage){
             setDishes(dish);
         }
     }, [dish]);
