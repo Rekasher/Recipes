@@ -7,7 +7,6 @@ import {
     checkTheFavoriteDishes,
     useGetFavoriteFromTheLocal,
 } from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
-
 import {PageLayout} from "../PageLayot.tsx";
 import {FavorButton} from "../../components/FavorButton/FavorButton.tsx";
 

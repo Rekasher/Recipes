@@ -29,7 +29,7 @@ const FavoriteRecipesPage = () => {
             window.removeEventListener("storage", onStorageChange);
         };
 
-    }, [])
+    }, []);
 
 
     return (

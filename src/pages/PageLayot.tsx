@@ -1,4 +1,4 @@
-import React from "react";
+import {FC, ReactNode} from "react";
 import {NavigationBar} from "../components/NavigationBar/NavigationBar.tsx";
 import {Spinner} from "../components/Spinner/Spinner.tsx";
 
@@ -6,10 +6,10 @@ import {Spinner} from "../components/Spinner/Spinner.tsx";
 type PropPageLayout  = {
     loading?: boolean;
     error?: string;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
-const PageLayout = ({loading, error, children}: PropPageLayout ) => {
+const PageLayout: FC<PropPageLayout> = ({loading, error, children}) => {
     return (
         <>
             <NavigationBar/>

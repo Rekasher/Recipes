@@ -9,17 +9,11 @@ import {useDish} from "../../context/Dish/DishProvider.tsx";
 
 const RecipesListPage = () => {
 
-
-
     const [dishesInfo, setDishesInfo] = useState<Dish[]>([]);
     const location = useLocation();
     const {setDish} = useDish();
     setDish(decodeURIComponent(location.search.split('=')[1]));
-
-
     const {data, loading, error} = useGetAllRecipes();
-
-
 
     useEffect(() => {
         if (data) {

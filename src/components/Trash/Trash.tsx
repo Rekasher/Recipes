@@ -1,5 +1,5 @@
 import {Dish} from "../../types/dishType.ts";
-import React from "react";
+import {FC} from "react";
 import {useDeleteFavoriteFromTheLocal} from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
 import './Trash.css'
 import {IconTrash} from "../../Icons/Icons.tsx"
@@ -9,7 +9,7 @@ type PropTrash = {
     onUpdate?: () => void;
 }
 
-const Trash: React.FC<PropTrash> = ({dish, onUpdate}) => {
+const Trash: FC<PropTrash> = ({dish, onUpdate}) => {
 
     const handleDeleteFromFavorite = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();

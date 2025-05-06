@@ -1,4 +1,4 @@
-import React from "react";
+import {FC} from "react";
 import "./SearchInput.css"
 
 type PropSearchInput = {
@@ -6,7 +6,7 @@ type PropSearchInput = {
     inputDish: (dish: string) => void;
 }
 
-const SearchInput: React.FC<PropSearchInput> = ({dishes, inputDish}) => {
+const SearchInput: FC<PropSearchInput> = ({dishes, inputDish}) => {
 
     const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         inputDish(e.target.value);

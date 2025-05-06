@@ -1,4 +1,4 @@
-import {SearchInput} from "./SearchInput/SearchInput.tsx";
+import {SearchInput} from "./components/SearchInput/SearchInput.tsx";
 import {MagGlass} from "../MagGlass/MagGlass.tsx";
 import React, {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
