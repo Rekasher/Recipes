@@ -9,7 +9,7 @@ import {
     checkTheFavoriteDishes,
     useGetFavoriteFromTheLocal
 } from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
-import {CardBackGroundColor, CardTextColor} from "./Cards-enum/CardEnum.ts";
+import {CardBackGroundColor, CardTextColor} from "./CardsEnum/CardEnum.ts";
 
 type PropDishCard = {
     dish: Dish;
