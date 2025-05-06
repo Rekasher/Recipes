@@ -7,13 +7,13 @@ import {
     checkTheFavoriteDishes,
     useGetFavoriteFromTheLocal,
 } from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
-import {AddButton} from "../../components/FavorButtons/AddButton/AddButton.tsx";
-import {RemoveButton} from "../../components/FavorButtons/RemoveButton/RemoveButton.tsx";
+
 import {PageLayout} from "../PageLayot.tsx";
+import {FavorButton} from "../../components/FavorButton/FavorButton.tsx";
 
 const RecipePage = () => {
     const location = useLocation();
-    const dishId = location.state?.id;
+    const dishId =  decodeURIComponent(location.search.split('=')[1]);
 
     const {recipeData, loading, error} = useGetRecipe(dishId);
     const favorList = useGetFavoriteFromTheLocal();
@@ -62,17 +62,11 @@ const RecipePage = () => {
                                 >
                                     Details
                                 </button>
-                                {isFavorite ? (
-                                    <RemoveButton
-                                        dish={recipeData}
-                                        onUpdate={handleToUpdate}
-                                    />
-                                ) : (
-                                    <AddButton
-                                        dish={recipeData}
-                                        onUpdate={handleToUpdate}
-                                    />
-                                )}
+                                <FavorButton
+                                    isFavor={isFavorite}
+                                    dish={recipeData}
+                                    onUpdate={handleToUpdate}
+                                />
                             </div>
                         </div>
                     </div>

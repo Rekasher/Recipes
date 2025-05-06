@@ -85,16 +85,6 @@
     background-color: #4ca388;
 }
 
-.to-favorite {
-    cursor: pointer;
-    background-color: coral;
-    color: white;
-}
-
-.to-favorite:hover {
-    background-color: #bd5f3c;
-}
-
 h2 {
     font-size: 24px;
     margin-bottom: 10px;

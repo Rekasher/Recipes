@@ -16,7 +16,7 @@ const PageLayout = ({loading, error, children}: PropPageLayout ) => {
             {loading ? (
                 <div className="loading"><Spinner/></div>
             ) : error ? (
-                <div className="error">{error}</div>
+                <div className="noDishes">No recipe data found.</div>
             ) : (
                 children
             )}
