@@ -1,5 +1,5 @@
 import {Dish} from "../../types/dishType.ts";
-import React from "react";
+import {FC} from "react";
 import {
     useDeleteFavoriteFromTheLocal,
     usePutFavoriteToLocal
@@ -12,7 +12,7 @@ type PropAddButton = {
     onUpdate?: () => void;
 }
 
-const FavorButton: React.FC<PropAddButton> = ({isFavor ,dish, onUpdate}) => {
+const FavorButton: FC<PropAddButton> = ({isFavor ,dish, onUpdate}) => {
 
     const handleToFavorite = () => {
         isFavor ? useDeleteFavoriteFromTheLocal(dish) : usePutFavoriteToLocal(dish);

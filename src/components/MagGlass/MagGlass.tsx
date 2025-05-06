@@ -1,4 +1,4 @@
-import React from "react";
+import {FC} from "react";
 import "./MagGlass.css"
 import {IconSearch} from "../../Icons/Icons.tsx";
 
@@ -6,7 +6,7 @@ type PropMagGlass = {
     callback: (() => void) | null;
 }
 
-const MagGlass: React.FC<PropMagGlass> = ({callback}) => {
+const MagGlass: FC<PropMagGlass> = ({callback}) => {
     return (
         <div className='magGlass'
              style={{cursor: 'pointer'}}

@@ -1,5 +1,5 @@
 import './DishCard.css'
-import React from "react";
+import {FC} from "react";
 import {useNavigate} from "react-router-dom";
 import {RoutePath} from "../../routes/enum/routesEnum.ts";
 import {Dish} from "../../types/dishType.ts";
@@ -16,7 +16,8 @@ type PropDishCard = {
     onUpdate?: () => void;
 }
 
-const DishCard: React.FC<PropDishCard> = ({dish, onUpdate}) => {
+const DishCard: FC<PropDishCard> = ({dish, onUpdate}) => {
+
     const {image_url, title, publisher, id} = dish;
     const navigate = useNavigate();
     const favoriteListDishes = useGetFavoriteFromTheLocal();
