@@ -4,11 +4,22 @@ import {Dish} from "../../types/dishType.ts";
 import './RecipesListPage.css';
 import {PageLayout} from "../PageLayot.tsx";
 import {useEffect, useState} from "react";
+import {useLocation} from "react-router-dom";
+import {useDish} from "../../context/Dish/DishProvider.tsx";
 
 const RecipesListPage = () => {
 
-    const {data, loading, error} = useGetAllRecipes();
+
+
     const [dishesInfo, setDishesInfo] = useState<Dish[]>([]);
+    const location = useLocation();
+    const {setDish} = useDish();
+    setDish(decodeURIComponent(location.search.split('=')[1]));
+
+
+    const {data, loading, error} = useGetAllRecipes();
+
+
 
     useEffect(() => {
         if (data) {

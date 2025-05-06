@@ -26,8 +26,7 @@ const DishCard: React.FC<PropDishCard> = ({dish, onUpdate}) => {
 
 
     const handleNavigate = (path: string) => {
-
-        navigate(path, {state: {id: id}});
+        navigate(`${path}?id=${id}`);
     }
 
     return (
