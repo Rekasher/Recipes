@@ -10,23 +10,18 @@ const NavigationBar = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const isNotSearchPage = location.pathname !== RoutePath.SEARCH;
-
-
-    const handleNavigate = (path: string) => {
-        navigate(path);
-    };
+    const isSearchPage = location.pathname === RoutePath.SEARCH;
 
     return (
         <header className="navbar-component">
             <div className="navbar">
                 <div
                     className="navbar-logo"
-                    onClick={() => handleNavigate(RoutePath.SEARCH)}
+                    onClick={() => navigate(RoutePath.SEARCH)}
                 >
                     <MagGlass callback={null}/>
                 </div>
-                {isNotSearchPage && (<Search/>)}
+                {!isSearchPage && (<Search/>)}
 
                 <div className="options">
                     <Home/>

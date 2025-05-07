@@ -1,18 +1,18 @@
 import {DishCard} from "../../components/Cards/DishCard.tsx";
-import {useGetAllRecipes} from "../../services/useAllRecipes/getAllRecipes.ts";
+import {useGetAllRecipes} from "../../hooks/useAllRecipes/getAllRecipes.ts";
 import {Dish} from "../../types/dishType.ts";
 import './RecipesListPage.css';
 import {PageLayout} from "../PageLayot.tsx";
 import {useEffect, useState} from "react";
-import {useLocation} from "react-router-dom";
+import {useSearchParams} from "react-router-dom";
 import {useDish} from "../../context/Dish/DishProvider.tsx";
 
 const RecipesListPage = () => {
 
     const [dishesInfo, setDishesInfo] = useState<Dish[]>([]);
-    const location = useLocation();
+    const [searchParam] = useSearchParams();
     const {setDish} = useDish();
-    setDish(decodeURIComponent(location.search.split('=')[1]));
+    setDish(decodeURIComponent(searchParam.get('value')!));
     const {data, loading, error} = useGetAllRecipes();
 
     useEffect(() => {

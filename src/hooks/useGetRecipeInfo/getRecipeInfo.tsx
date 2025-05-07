@@ -1,7 +1,4 @@
-import {
-    useEffect,
-    useState
-} from "react";
+import {useEffect, useState} from "react";
 import {getRecipeInfo} from "../../api/CurrentRecipe/CurrentRecipe.ts";
 import {Recipe} from "../../types/recipeType.ts";
 
@@ -26,7 +23,7 @@ const useGetRecipe = (id: string) => {
             });
     }, []);
 
-    return {recipeData, loading, error};
+    return {data: recipeData, loading, error};
 }
 
 export {useGetRecipe};

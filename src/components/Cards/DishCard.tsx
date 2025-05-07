@@ -1,15 +1,13 @@
 import './DishCard.css'
-import {FC} from "react";
+import {FC, useMemo} from "react";
 import {useNavigate} from "react-router-dom";
-import {RoutePath} from "../../routes/enum/routesEnum.ts";
-import {Dish} from "../../types/dishType.ts";
-import {StarFavorite} from "../StarFavorite/StarFavorite.tsx";
-import {Trash} from "../Trash/Trash.tsx";
-import {
-    checkTheFavoriteDishes,
-    useGetFavoriteFromTheLocal
-} from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
-import {CardBackGroundColor, CardTextColor} from "./CardsEnum/CardEnum.ts";
+import {RoutePath} from "../../routes/enum/routesEnum";
+import {Dish} from "../../types/dishType";
+import {StarFavorite} from "../StarFavorite/StarFavorite";
+import {Trash} from "../Trash/Trash";
+import {CardBackGroundColor, CardTextColor} from "./CardsEnum/CardEnum";
+import {checkTheFavoriteDish} from "../../utils/checkFavoriteDish/checkTheFavoriteDish";
+import {useGetFavoriteFromTheLocal} from "../../hooks/useFavoriteDishes/useGetFavoriteFromTheLocal";
 
 type PropDishCard = {
     dish: Dish;
@@ -21,18 +19,17 @@ const DishCard: FC<PropDishCard> = ({dish, onUpdate}) => {
     const {image_url, title, publisher, id} = dish;
     const navigate = useNavigate();
     const favoriteListDishes = useGetFavoriteFromTheLocal();
-    const isFavorite = checkTheFavoriteDishes(dish, favoriteListDishes);
+    const isFavorite = checkTheFavoriteDish(dish, favoriteListDishes);
     const color = isFavorite ? CardTextColor.FAVORITE : CardTextColor.STATIC;
     const backGroundColor = isFavorite ? CardBackGroundColor.FAVORITE : CardBackGroundColor.STATIC
 
-
-    const handleNavigate = (path: string) => {
-        navigate(`${path}?id=${id}`);
-    }
+    const navigationLink = useMemo(() => {
+        return `${RoutePath.RECIPE}?id=${id}`
+    }, [id]);
 
     return (
         <>
-            <div className="card" onClick={() => handleNavigate(RoutePath.RECIPE)}
+            <div className="card" onClick={() => navigate(navigationLink)}
                  style={{color: color, backgroundColor: backGroundColor}}>
                 <div className="image-wrapper">
                     <img
@@ -47,10 +44,10 @@ const DishCard: FC<PropDishCard> = ({dish, onUpdate}) => {
                     </p>
                 </div>
                 <div className="card-actions">
-                    {!isFavorite ?
-                        <StarFavorite dish={dish} onUpdate={onUpdate}/>
-                        :
+                    {isFavorite ?
                         <Trash dish={dish} onUpdate={onUpdate}/>
+                        :
+                        <StarFavorite dish={dish} onUpdate={onUpdate}/>
                     }
                 </div>
             </div>

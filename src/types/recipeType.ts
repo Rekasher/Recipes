@@ -1,10 +1,10 @@
-export interface Ingredient {
+export type Ingredient = {
     quantity: number;
     unit: string;
     description: string;
 }
 
-interface Recipe {
+export type Recipe = {
     cooking_time: number;
     id: string;
     image_url: string;
@@ -14,5 +14,3 @@ interface Recipe {
     source_url: string;
     title: string;
 }
-
-export type {Recipe};

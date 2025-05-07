@@ -1,9 +1,10 @@
 import {Dish} from "../../types/dishType.ts";
 import {DishCard} from "../../components/Cards/DishCard.tsx";
-import {useGetFavoriteFromTheLocal,} from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
+
 import {PageLayout} from "../PageLayot.tsx";
 import {useEffect, useState} from "react";
 import "./FavoriteRecipesPage.css"
+import {useGetFavoriteFromTheLocal} from "../../hooks/useFavoriteDishes/useGetFavoriteFromTheLocal.ts";
 
 const FavoriteRecipesPage = () => {
 

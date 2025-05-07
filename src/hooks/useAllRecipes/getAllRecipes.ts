@@ -18,8 +18,8 @@ const useGetAllRecipes = () => {
             .then((info) => {
                 setDishesData(info!.data!.recipes);
             })
-            .catch((err) => {
-                setError(err.message || "Failed request");
+            .catch((err: Error) => {
+                setError(err?.message || "Failed request");
             })
             .finally(() => {
                 setLoading(false);

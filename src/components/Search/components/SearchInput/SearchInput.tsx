@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {ChangeEvent, FC} from "react";
 import "./SearchInput.css"
 
 type PropSearchInput = {
@@ -8,16 +8,12 @@ type PropSearchInput = {
 
 const SearchInput: FC<PropSearchInput> = ({dishes, inputDish}) => {
 
-    const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        inputDish(e.target.value);
-    }
-
     return (
         <div className="search-input-wrapper">
             <input
                 autoFocus={true}
                 className='search-input-text'
-                onChange={handleChangeInput}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => inputDish(e.target.value)}
                 value={dishes || ''}
                 placeholder={'Search dish...'}
                 type='search'

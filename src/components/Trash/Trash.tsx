@@ -1,8 +1,8 @@
 import {Dish} from "../../types/dishType.ts";
-import {FC} from "react";
-import {useDeleteFavoriteFromTheLocal} from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
+import {FC, MouseEvent} from "react";
 import './Trash.css'
 import {IconTrash} from "../../Icons/Icons.tsx"
+import {useDeleteFavoriteFromTheLocal} from "../../hooks/useFavoriteDishes/useDeleteFavoriteFromTheLocal.ts";
 
 type PropTrash = {
     dish: Dish;
@@ -11,12 +11,11 @@ type PropTrash = {
 
 const Trash: FC<PropTrash> = ({dish, onUpdate}) => {
 
-    const handleDeleteFromFavorite = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleDeleteFromFavorite = (e: MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
         useDeleteFavoriteFromTheLocal(dish);
-        if (onUpdate) onUpdate();
+        onUpdate && onUpdate();
     };
-
 
     return (
         <div className="trash" onClick={handleDeleteFromFavorite}>

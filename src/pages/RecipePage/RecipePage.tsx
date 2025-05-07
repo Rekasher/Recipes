@@ -1,27 +1,26 @@
 import {useEffect, useState} from "react";
 import "./RecipePage.css";
-import {useLocation} from "react-router-dom";
-import {useGetRecipe} from "../../services/useGetRecipeInfo/getRecipeInfo.tsx";
+import {useSearchParams} from "react-router-dom";
+import {useGetRecipe} from "../../hooks/useGetRecipeInfo/getRecipeInfo.tsx";
 import {Ingredient} from "../../types/recipeType.ts";
-import {
-    checkTheFavoriteDishes,
-    useGetFavoriteFromTheLocal,
-} from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
+
 import {PageLayout} from "../PageLayot.tsx";
 import {FavorButton} from "../../components/FavorButton/FavorButton.tsx";
+import {useGetFavoriteFromTheLocal} from "../../hooks/useFavoriteDishes/useGetFavoriteFromTheLocal.ts";
+import {checkTheFavoriteDish} from "../../utils/checkFavoriteDish/checkTheFavoriteDish.ts";
 
 const RecipePage = () => {
-    const location = useLocation();
-    const dishId =  decodeURIComponent(location.search.split('=')[1]);
+    const [searchParams] = useSearchParams();
+    const dishId = searchParams.get("id")!;
 
-    const {recipeData, loading, error} = useGetRecipe(dishId);
+    const {data: recipeData, loading, error} = useGetRecipe(dishId);
     const favorList = useGetFavoriteFromTheLocal();
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
         if (!recipeData) return;
 
-        const fav = checkTheFavoriteDishes(recipeData, favorList);
+        const fav = checkTheFavoriteDish(recipeData, favorList);
         setIsFavorite(fav);
     }, [recipeData, favorList]);
 

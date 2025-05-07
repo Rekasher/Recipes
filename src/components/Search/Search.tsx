@@ -15,18 +15,18 @@ const Search = () => {
     const location = useLocation();
     const isNotSearchPage = location.pathname === RoutePath.SEARCH;
     const searchClassStyle = isNotSearchPage ? SearchStyle.SEARCH : SearchStyle.NAVIGATION;
-    const {dish ,setDish} = useDish();
+    const {dish, setDish} = useDish();
 
     const handleFindDish = (e?: React.FormEvent) => {
         if (e) e.preventDefault();
         if (dishes && dishes.trim() !== '') {
             setDish(dishes.trim());
-            navigate(`${RoutePath.LIST}?value=${encodeURIComponent(dishes)}`);
+            navigate(`${RoutePath.LIST}?value=${dishes}`);
         }
     }
 
     useEffect(() => {
-        if (dish && !isNotSearchPage){
+        if (dish && !isNotSearchPage) {
             setDishes(dish);
         }
     }, [dish]);

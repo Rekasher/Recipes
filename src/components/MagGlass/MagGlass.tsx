@@ -8,8 +8,7 @@ type PropMagGlass = {
 
 const MagGlass: FC<PropMagGlass> = ({callback}) => {
     return (
-        <div className='magGlass'
-             style={{cursor: 'pointer'}}
+        <div className="magGlass"
              onClick={callback!}
         >
             <IconSearch color="black"/>
