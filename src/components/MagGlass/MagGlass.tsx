@@ -3,13 +3,13 @@ import "./MagGlass.css"
 import {IconSearch} from "../../Icons/Icons.tsx";
 
 type PropMagGlass = {
-    callback: (() => void) | null;
+    callback: (() => void);
 }
 
 const MagGlass: FC<PropMagGlass> = ({callback}) => {
     return (
         <div className="magGlass"
-             onClick={callback!}
+             onClick={callback}
         >
             <IconSearch color="black"/>
         </div>

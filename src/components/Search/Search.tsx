@@ -1,41 +1,32 @@
 import {SearchInput} from "./components/SearchInput/SearchInput.tsx";
 import {MagGlass} from "../MagGlass/MagGlass.tsx";
-import React, {useEffect, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
-import {useDish} from "../../context/Dish/DishProvider.tsx";
+import {FC, useState, FormEvent} from "react";
+import {useNavigate} from "react-router-dom";
 import {RoutePath} from "../../routes/enum/routesEnum.ts";
 import './Search.css'
 import {SearchStyle} from "./SearchEnum/SearchEnum.ts";
 
+type PropSearch = {
+    searchVariant: string
+}
 
-const Search = () => {
+const Search: FC<PropSearch> = ({searchVariant}) => {
 
     const [dishes, setDishes] = useState<string | null>(null);
     const navigate = useNavigate();
-    const location = useLocation();
-    const isNotSearchPage = location.pathname === RoutePath.SEARCH;
-    const searchClassStyle = isNotSearchPage ? SearchStyle.SEARCH : SearchStyle.NAVIGATION;
-    const {dish, setDish} = useDish();
 
-    const handleFindDish = (e?: React.FormEvent) => {
+    const handleFindDish = (e?: FormEvent) => {
         if (e) e.preventDefault();
         if (dishes && dishes.trim() !== '') {
-            setDish(dishes.trim());
             navigate(`${RoutePath.LIST}?value=${dishes}`);
         }
     }
 
-    useEffect(() => {
-        if (dish && !isNotSearchPage) {
-            setDishes(dish);
-        }
-    }, [dish]);
-
     return (
-        <div className={searchClassStyle}>
+        <div className={searchVariant}>
             <form onSubmit={handleFindDish}>
                 <SearchInput dishes={dishes} inputDish={setDishes}/>
-                {isNotSearchPage && (<MagGlass callback={handleFindDish}/>)}
+                {SearchStyle.SEARCH_PAGE === searchVariant && (<MagGlass callback={handleFindDish}/>)}
             </form>
         </div>
     );

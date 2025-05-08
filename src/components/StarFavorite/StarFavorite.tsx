@@ -1,6 +1,6 @@
 import "./StarFavorite.css"
 import {Dish} from "../../types/dishType.ts";
-import {FC} from "react";
+import {FC, MouseEvent} from "react";
 
 import {IconStar} from "../../Icons/Icons.tsx";
 import {usePutFavoriteToLocal} from "../../hooks/useFavoriteDishes/usePutFavoriteToLocal.ts";
@@ -12,7 +12,7 @@ type PropStarFavorite = {
 
 const StarFavorite: FC<PropStarFavorite> = ({dish, onUpdate}) => {
 
-    const handleToFavorite = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleToFavorite = (e: MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
         usePutFavoriteToLocal(dish)
         onUpdate && onUpdate();

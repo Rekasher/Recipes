@@ -1,4 +1,5 @@
 import {IconFidgetSpinner} from "../../Icons/Icons.tsx";
+import "./Spinner.css"
 
 const Spinner = () => {
     return (

@@ -1,4 +1,4 @@
-.search {
+.search-page {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,7 +6,7 @@
     width: 100vw;
 }
 
-.search-bar {
+.not-search-page {
     display: flex;
     align-items: center;
     padding: 4px 8px;

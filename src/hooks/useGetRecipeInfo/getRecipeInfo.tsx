@@ -4,11 +4,11 @@ import {Recipe} from "../../types/recipeType.ts";
 
 const useGetRecipe = (id: string) => {
     const [recipeData, setRecipeData] = useState<Recipe | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<null | string>(null);
 
     useEffect(() => {
-        setLoading(true);
+        setIsLoading(true);
         setError(null);
 
         getRecipeInfo(id)
@@ -19,11 +19,11 @@ const useGetRecipe = (id: string) => {
                 setError(err.message || "Failed request");
             })
             .finally(() => {
-                setLoading(false);
+                setIsLoading(false);
             });
     }, []);
 
-    return {data: recipeData, loading, error};
+    return {data: recipeData, isLoading, error};
 }
 
 export {useGetRecipe};
