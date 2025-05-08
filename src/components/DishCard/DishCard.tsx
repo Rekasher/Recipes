@@ -1,13 +1,14 @@
-import './DishCard.css';
 import { FC, useMemo } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
 import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
 import { RoutePath } from '../../routes/enum/routesEnum.ts';
 import { Dish } from '../../types/dishType.ts';
-import { checkTheFavoriteDish } from '../../utils/checkFavoriteDish/checkTheFavoriteDish.ts';
 import { StarFavorite } from '../StarFavorite/StarFavorite.tsx';
 import { Trash } from '../Trash/Trash.tsx';
-import { CardBackGroundColor, CardTextColor } from './DishCardEnum/CardEnum.ts';
+import './DishCard.css';
+import { CardBackGroundColor } from './DishCardEnum/CardEnum.ts';
 
 type PropDishCard = {
   dish: Dish;
@@ -16,11 +17,11 @@ type PropDishCard = {
 const DishCard: FC<PropDishCard> = ({ dish }) => {
   const { image_url, title, publisher, id } = dish;
   const navigate = useNavigate();
-  const { favorite } = useFavoriteContext();
+  const { isFavorite } = useFavoriteContext();
 
-  const isFavorite = checkTheFavoriteDish(dish, favorite);
-  const color = isFavorite ? CardTextColor.FAVORITE : CardTextColor.STATIC;
-  const backGroundColor = isFavorite ? CardBackGroundColor.FAVORITE : CardBackGroundColor.STATIC;
+  const backGroundColor = isFavorite(dish)
+    ? CardBackGroundColor.FAVORITE
+    : CardBackGroundColor.STATIC;
 
   const navigationLink = useMemo(() => {
     return `${RoutePath.RECIPE}?id=${id}`;
@@ -31,7 +32,7 @@ const DishCard: FC<PropDishCard> = ({ dish }) => {
       <div
         className="card"
         onClick={() => navigate(navigationLink)}
-        style={{ color: color, backgroundColor: backGroundColor }}
+        style={{ backgroundColor: backGroundColor }}
       >
         <div className="image-wrapper">
           <img src={image_url} alt="Image" className="card-image" />
@@ -41,7 +42,7 @@ const DishCard: FC<PropDishCard> = ({ dish }) => {
           <p className="card-text">{publisher}</p>
         </div>
         <div className="card-actions">
-          {isFavorite ? <Trash dish={dish} /> : <StarFavorite dish={dish} />}
+          {isFavorite(dish) ? <Trash dish={dish} /> : <StarFavorite dish={dish} />}
         </div>
       </div>
     </>

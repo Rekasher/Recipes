@@ -1,10 +1,11 @@
-import './NavigationBar.css';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import { RoutePath } from '../../routes/enum/routesEnum.ts';
 import { FavoriteHeart } from '../FavoriteHeart/FavoriteHeart.tsx';
 import { Home } from '../Home/Home.tsx';
 import { Search } from '../Search/Search.tsx';
 import { SearchStyle } from '../Search/SearchEnum/SearchEnum.ts';
+import './NavigationBar.css';
 
 const NavigationBar = () => {
   const navigate = useNavigate();

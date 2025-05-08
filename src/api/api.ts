@@ -1,9 +1,8 @@
 import axios from 'axios';
-
-const apiLink = import.meta.env.VITE_API_LINK;
+import { API_LINK } from '../utils/constants.ts';
 
 const api = axios.create({
-  baseURL: apiLink,
+  baseURL: API_LINK,
   headers: {
     'Content-Type': 'application/json',
   },

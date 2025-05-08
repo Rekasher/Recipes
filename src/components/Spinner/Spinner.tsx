@@ -1,5 +1,5 @@
-import { IconFidgetSpinner } from '../../Icons/Icons.tsx';
 import './Spinner.css';
+import { IconFidgetSpinner } from '@tabler/icons-react';
 
 const Spinner = () => {
   return (

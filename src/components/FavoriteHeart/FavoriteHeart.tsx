@@ -1,7 +1,8 @@
-import { RoutePath } from '../../routes/enum/routesEnum';
 import { useNavigate } from 'react-router-dom';
+
+import { RoutePath } from '../../routes/enum/routesEnum';
 import './FavoriteHeart.css';
-import { IconHeart } from '../../Icons/Icons';
+import { IconHeart } from '@tabler/icons-react';
 
 const FavoriteHeart = () => {
   const navigate = useNavigate();

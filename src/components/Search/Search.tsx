@@ -1,10 +1,12 @@
-import { SearchInput } from './components/SearchInput/SearchInput.tsx';
-import { FC, useState, FormEvent } from 'react';
+import { FC, FormEvent, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
 import { RoutePath } from '../../routes/enum/routesEnum.ts';
 import { MagGlass } from '../MagGlass/MagGlass.tsx';
 import './Search.css';
 import { SearchStyle } from './SearchEnum/SearchEnum.ts';
+import { SearchInput } from './components/SearchInput/SearchInput.tsx';
 
 type PropSearch = {
   searchVariant: string;
@@ -24,7 +26,7 @@ const Search: FC<PropSearch> = ({ searchVariant }) => {
   return (
     <div className={searchVariant}>
       <form onSubmit={handleFindDish}>
-        <SearchInput dishes={dishesInput} setDishes={setDishesInput} />
+        <SearchInput inputValue={dishesInput} onChangeDish={setDishesInput} />
         {SearchStyle.SEARCH_PAGE === searchVariant && <MagGlass callback={handleFindDish} />}
       </form>
     </div>

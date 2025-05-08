@@ -1,8 +1,8 @@
-import { Dish } from '../../types/dishType.ts';
 import { DishCard } from '../../components/DishCard/DishCard.tsx';
-import './FavoriteRecipesPage.css';
 import NoInfo from '../../components/NoInfo/NoInfo.tsx';
 import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
+import { Dish } from '../../types/dishType.ts';
+import './FavoriteRecipesPage.css';
 
 const FavoriteRecipesPage = () => {
   const { favorite } = useFavoriteContext();

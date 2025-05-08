@@ -1,7 +1,8 @@
-import { RoutePath } from '../../routes/enum/routesEnum.ts';
 import { useNavigate } from 'react-router-dom';
+
+import { RoutePath } from '../../routes/enum/routesEnum.ts';
 import './Home.css';
-import { IconHome } from '../../Icons/Icons';
+import { IconHome } from '@tabler/icons-react';
 
 const Home = () => {
   const navigate = useNavigate();

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { getRecipeInfo } from '../../api/CurrentRecipe/CurrentRecipe.ts';
 import { Recipe } from '../../types/recipeType.ts';
 
@@ -21,7 +22,7 @@ const useGetRecipe = (id: string) => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [id]);
 
   return { data: recipeData, isLoading, error };
 };

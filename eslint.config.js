@@ -1,51 +1,54 @@
-import eslintPluginReact from 'eslint-plugin-react';
-import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
-import eslintPluginImport from 'eslint-plugin-import';
-import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
-import eslintPluginUnusedImports from 'eslint-plugin-unused-imports';
-import parserTypeScript from '@typescript-eslint/parser';
-import pluginTypeScript from '@typescript-eslint/eslint-plugin';
-import globals from 'globals';
+import tsParser from '@typescript-eslint/parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import reactPlugin from 'eslint-plugin-react';
+import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+import importPlugin from 'eslint-plugin-import';
+import prettierPlugin from 'eslint-plugin-prettier';
+import prettierConfig from 'eslint-config-prettier';
 
 export default [
   {
-    files: ['**/*.{js,cjs,mjs,ts,tsx}'],
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      parser: parserTypeScript,
+      parser: tsParser,
       parserOptions: {
-        projectService: true,
-        project: ['./tsconfig.json'],
+        ecmaVersion: 'latest',
         sourceType: 'module',
-        ecmaFeatures: { jsx: true },
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
+        ecmaFeatures: {
+          jsx: true,
+        },
       },
     },
     plugins: {
-      react: eslintPluginReact,
-      'react-hooks': eslintPluginReactHooks,
-      import: eslintPluginImport,
-      'jsx-a11y': eslintPluginJsxA11y,
-      'unused-imports': eslintPluginUnusedImports,
-      '@typescript-eslint': pluginTypeScript,
+      '@typescript-eslint': tsPlugin,
+      react: reactPlugin,
+      'react-hooks': reactHooksPlugin,
+      'jsx-a11y': jsxA11yPlugin,
+      import: importPlugin,
+      prettier: prettierPlugin,
     },
     rules: {
-      'react/jsx-uses-react': 'off',
+      ...tsPlugin.configs.recommended.rules,
+
+      ...reactPlugin.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
-      'react/jsx-uses-vars': 'error',
-      'react/jsx-no-undef': 'error',
+
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      'unused-imports/no-unused-imports': 'error',
-      'import/order': ['warn', { alphabetize: { order: 'asc' } }],
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+
+      'prettier/prettier': 'error',
     },
     settings: {
       react: {
         version: 'detect',
       },
+    },
+  },
+
+  {
+    rules: {
+      ...prettierConfig.rules,
     },
   },
 ];

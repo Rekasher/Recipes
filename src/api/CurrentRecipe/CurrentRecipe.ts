@@ -1,9 +1,9 @@
 import { api } from '../api.ts';
+import { API_KEY } from '../../utils/constants.ts';
 
 const getRecipeInfo = async (id: string) => {
   try {
-    const apiKey = import.meta.env.VITE_API_KEY;
-    const dataLink = `recipes/${id}?key=${apiKey}`;
+    const dataLink = `recipes/${id}?key=${API_KEY}`;
     return await api.get(dataLink).then((res) => res.data);
   } catch (err) {
     console.error(`Bad request: ${err}`);

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { getAllRecipes } from '../../api/AllRecipes/AllRecipes.ts';
 
 const useGetAllRecipes = (search: string) => {

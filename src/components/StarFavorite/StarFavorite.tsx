@@ -1,21 +1,20 @@
-import './StarFavorite.css';
 import { FC, MouseEvent } from 'react';
 
-import { IconStar } from '../../Icons/Icons.tsx';
 import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
-import { usePutFavorite } from '../../hooks/useFavoriteDishes/usePutFavorite.ts';
 import { Dish } from '../../types/dishType.ts';
+import './StarFavorite.css';
+import { IconStar } from '@tabler/icons-react';
 
 type PropStarFavorite = {
   dish: Dish;
 };
 
 const StarFavorite: FC<PropStarFavorite> = ({ dish }) => {
-  const { setFavorite } = useFavoriteContext();
+  const { putToFavorite } = useFavoriteContext();
 
   const handleToFavorite = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    setFavorite(usePutFavorite(dish));
+    putToFavorite(dish);
   };
 
   return (

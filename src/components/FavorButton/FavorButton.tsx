@@ -1,17 +1,20 @@
 import { FC } from 'react';
-import './FavorButton.css';
+
 import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
 import { useRecipeProvider } from '../../context/Recipe/RecipeContext.tsx';
-import { useDeleteFavorite } from '../../hooks/useFavoriteDishes/useDeleteFavorite.ts';
-import { usePutFavorite } from '../../hooks/useFavoriteDishes/usePutFavorite.ts';
+import './FavorButton.css';
 
 const FavorButton: FC = () => {
-  const { setFavorite } = useFavoriteContext();
-  const { recipe: dish } = useRecipeProvider();
-  const { isFavorite } = useFavoriteContext();
+  const { recipe } = useRecipeProvider();
+  const { isFavorite, putToFavorite, deleteFromFavorite, takeDish } = useFavoriteContext();
+  const dish = takeDish(recipe!);
 
   const handleToFavorite = () => {
-    isFavorite(dish!) ? setFavorite(useDeleteFavorite(dish!)) : setFavorite(usePutFavorite(dish!));
+    if (isFavorite(dish!)) {
+      deleteFromFavorite(dish!);
+    } else {
+      putToFavorite(dish!);
+    }
   };
 
   return (

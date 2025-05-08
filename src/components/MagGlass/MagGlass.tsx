@@ -1,6 +1,7 @@
 import { FC } from 'react';
+
 import './MagGlass.css';
-import { IconSearch } from '../../Icons/Icons.tsx';
+import { IconSearch } from '@tabler/icons-react';
 
 type PropMagGlass = {
   callback: () => void;
@@ -8,7 +9,7 @@ type PropMagGlass = {
 
 const MagGlass: FC<PropMagGlass> = ({ callback }) => {
   return (
-    <div className="magGlass" onClick={callback}>
+    <div className="mag-glass" onClick={callback}>
       <IconSearch color="black" />
     </div>
   );
