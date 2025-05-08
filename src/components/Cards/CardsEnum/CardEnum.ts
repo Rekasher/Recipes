@@ -1,11 +1,11 @@
 enum CardTextColor {
-    STATIC = "black",
-    FAVORITE = "black",
+  STATIC = 'black',
+  FAVORITE = 'black',
 }
 
 enum CardBackGroundColor {
-    STATIC = "white",
-    FAVORITE = "yellow",
+  STATIC = 'white',
+  FAVORITE = 'yellow',
 }
 
-export {CardTextColor, CardBackGroundColor}
+export { CardTextColor, CardBackGroundColor };

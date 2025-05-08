@@ -1,16 +1,14 @@
-import {FC} from "react";
-import {NavigationBar} from "../NavigationBar/NavigationBar.tsx";
-import {Outlet} from "react-router-dom";
-
-
+import { FC } from 'react';
+import { Outlet } from 'react-router-dom';
+import { NavigationBar } from '../NavigationBar/NavigationBar.tsx';
 
 const Layout: FC = () => {
-    return (
-        <>
-            <NavigationBar/>
-            <Outlet/>
-        </>
-    );
-}
+  return (
+    <>
+      <NavigationBar />
+      <Outlet />
+    </>
+  );
+};
 
-export {Layout}
+export { Layout };
