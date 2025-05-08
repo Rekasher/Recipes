@@ -1,7 +1,7 @@
-import { Recipe } from '../../types/recipeType.ts';
 import { createContext, FC, PropsWithChildren, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useGetRecipe } from '../../hooks/useGetRecipeInfo/useGetRecipeInfo.tsx';
+import { Recipe } from '../../types/recipeType.ts';
 
 type RecipeContext = {
   recipe: Recipe | null;

@@ -2,8 +2,8 @@ import { Dish } from '../../types/dishType.ts';
 import { FC, MouseEvent } from 'react';
 import './Trash.css';
 import { IconTrash } from '../../Icons/Icons.tsx';
-import { useDeleteFavorite } from '../../hooks/useFavoriteDishes/useDeleteFavorite.ts';
 import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
+import { useDeleteFavorite } from '../../hooks/useFavoriteDishes/useDeleteFavorite.ts';
 
 type PropTrash = {
   dish: Dish;

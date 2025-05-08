@@ -1,13 +1,13 @@
 import './DishCard.css';
 import { FC, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
 import { RoutePath } from '../../routes/enum/routesEnum.ts';
 import { Dish } from '../../types/dishType.ts';
 import { checkTheFavoriteDish } from '../../utils/checkFavoriteDish/checkTheFavoriteDish.ts';
 import { StarFavorite } from '../StarFavorite/StarFavorite.tsx';
 import { Trash } from '../Trash/Trash.tsx';
 import { CardBackGroundColor, CardTextColor } from './DishCardEnum/CardEnum.ts';
-import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
 
 type PropDishCard = {
   dish: Dish;

@@ -3,16 +3,16 @@ import './SearchInput.css';
 
 type PropSearchInput = {
   dishes: string | null;
-  inputDish: (dish: string) => void;
+  setDishes: (dish: string) => void;
 };
 
-const SearchInput: FC<PropSearchInput> = ({ dishes, inputDish }) => {
+const SearchInput: FC<PropSearchInput> = ({ dishes, setDishes }) => {
   return (
     <div className="search-input-wrapper">
       <input
         autoFocus={true}
         className="search-input-text"
-        onChange={(e: ChangeEvent<HTMLInputElement>) => inputDish(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => setDishes(e.target.value)}
         value={dishes || ''}
         placeholder={'Search dish...'}
         type="search"

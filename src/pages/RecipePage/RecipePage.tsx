@@ -2,8 +2,8 @@ import './RecipePage.css';
 import { FavorButton } from '../../components/FavorButton/FavorButton.tsx';
 import NoInfo from '../../components/NoInfo/NoInfo.tsx';
 import { Spinner } from '../../components/Spinner/Spinner.tsx';
-import { Ingredient } from '../../types/recipeType.ts';
 import { useRecipeProvider } from '../../context/Recipe/RecipeContext.tsx';
+import { Ingredient } from '../../types/recipeType.ts';
 
 const RecipePage = () => {
   const { recipe: recipeData, isLoading, error } = useRecipeProvider();

@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import './FavorButton.css';
-import { useDeleteFavorite } from '../../hooks/useFavoriteDishes/useDeleteFavorite.ts';
-import { usePutFavorite } from '../../hooks/useFavoriteDishes/usePutFavorite.ts';
 import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
 import { useRecipeProvider } from '../../context/Recipe/RecipeContext.tsx';
+import { useDeleteFavorite } from '../../hooks/useFavoriteDishes/useDeleteFavorite.ts';
+import { usePutFavorite } from '../../hooks/useFavoriteDishes/usePutFavorite.ts';
 
 const FavorButton: FC = () => {
   const { setFavorite } = useFavoriteContext();

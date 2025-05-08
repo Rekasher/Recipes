@@ -11,20 +11,20 @@ type PropSearch = {
 };
 
 const Search: FC<PropSearch> = ({ searchVariant }) => {
-  const [dishes, setDishes] = useState<string | null>(null);
+  const [dishesInput, setDishesInput] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleFindDish = (e?: FormEvent) => {
     if (e) e.preventDefault();
-    if (dishes && dishes.trim() !== '') {
-      navigate(`${RoutePath.LIST}?value=${dishes}`);
+    if (dishesInput && dishesInput.trim() !== '') {
+      navigate(`${RoutePath.LIST}?value=${dishesInput}`);
     }
   };
 
   return (
     <div className={searchVariant}>
       <form onSubmit={handleFindDish}>
-        <SearchInput dishes={dishes} inputDish={setDishes} />
+        <SearchInput dishes={dishesInput} setDishes={setDishesInput} />
         {SearchStyle.SEARCH_PAGE === searchVariant && <MagGlass callback={handleFindDish} />}
       </form>
     </div>

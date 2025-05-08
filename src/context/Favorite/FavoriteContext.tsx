@@ -1,6 +1,6 @@
-import { Dish } from '../../types/dishType.ts';
 import { createContext, FC, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { useGetFavorite } from '../../hooks/useFavoriteDishes/useGetFavorite.ts';
+import { Dish } from '../../types/dishType.ts';
 import { checkTheFavoriteDish } from '../../utils/checkFavoriteDish/checkTheFavoriteDish.ts';
 
 type FavoriteContext = {
