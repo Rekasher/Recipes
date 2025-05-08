@@ -1,6 +1,6 @@
 import { createContext, type FC, PropsWithChildren, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useGetAllRecipes } from '../../hooks/useAllRecipes/getAllRecipes.ts';
+import { useGetAllRecipes } from '../../hooks/useAllRecipes/useGetAllRecipes.ts';
 import { Dish } from '../../types/dishType.ts';
 
 type DishesContext = {
@@ -11,7 +11,7 @@ type DishesContext = {
 
 const Context = createContext<DishesContext>({
   data: null,
-  isLoading: false,
+  isLoading: true,
   error: null,
 });
 
@@ -19,13 +19,13 @@ const useDishesProvider = () => useContext(Context);
 
 const DishesProvider: FC<PropsWithChildren> = ({ children }) => {
   const [searchParams] = useSearchParams();
-  const { data, loading, error } = useGetAllRecipes(searchParams.get('value') || '');
+  const { data, isLoading, error } = useGetAllRecipes(searchParams.get('value') || '');
 
   return (
     <Context.Provider
       value={{
         data,
-        isLoading: loading,
+        isLoading,
         error: error && new Error(error),
       }}
     >

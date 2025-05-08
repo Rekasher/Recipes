@@ -1,8 +1,8 @@
 import { Dish } from '../../types/dishType';
 import { FC } from 'react';
 import './FavorButton.css';
-import { useDeleteFavoriteFromTheLocal } from '../../hooks/useFavoriteDishes/useDeleteFavoriteFromTheLocal';
-import { usePutFavoriteToLocal } from '../../hooks/useFavoriteDishes/usePutFavoriteToLocal';
+import { useDeleteFavorite } from '../../hooks/useFavoriteDishes/useDeleteFavorite.ts';
+import { usePutFavorite } from '../../hooks/useFavoriteDishes/usePutFavorite.ts';
 
 type PropAddButton = {
   isFavor: boolean;
@@ -12,7 +12,7 @@ type PropAddButton = {
 
 const FavorButton: FC<PropAddButton> = ({ isFavor, dish, onUpdate }) => {
   const handleToFavorite = () => {
-    isFavor ? useDeleteFavoriteFromTheLocal(dish) : usePutFavoriteToLocal(dish);
+    isFavor ? useDeleteFavorite(dish) : usePutFavorite(dish);
     onUpdate && onUpdate();
   };
 

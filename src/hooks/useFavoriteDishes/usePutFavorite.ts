@@ -1,7 +1,7 @@
 import { Dish } from '../../types/dishType.ts';
 import { checkTheFavoriteDish } from '../../utils/checkFavoriteDish/checkTheFavoriteDish.ts';
 
-const usePutFavoriteToLocal = (dish: Dish) => {
+const usePutFavorite = (dish: Dish) => {
   const FAVORITE_KEY = import.meta.env.VITE_FAVORITE_KEY;
   const storedFavorites = localStorage.getItem(FAVORITE_KEY);
   const favorList: Dish[] = storedFavorites ? JSON.parse(storedFavorites) : [];
@@ -15,4 +15,4 @@ const usePutFavoriteToLocal = (dish: Dish) => {
   return favorList;
 };
 
-export { usePutFavoriteToLocal };
+export { usePutFavorite };

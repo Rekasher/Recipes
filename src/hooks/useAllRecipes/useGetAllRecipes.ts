@@ -3,13 +3,13 @@ import { getAllRecipes } from '../../api/AllRecipes/AllRecipes.ts';
 
 const useGetAllRecipes = (search: string) => {
   const [dishesData, setDishesData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<null | string>(null);
 
   useEffect(() => {
     if (!search) return;
 
-    setLoading(true);
+    setIsLoading(true);
     setError(null);
 
     getAllRecipes(search)
@@ -20,11 +20,11 @@ const useGetAllRecipes = (search: string) => {
         setError(err?.message || 'Failed request');
       })
       .finally(() => {
-        setLoading(false);
+        setIsLoading(false);
       });
   }, [search]);
 
-  return { data: dishesData, loading, error };
+  return { data: dishesData, isLoading, error };
 };
 
 export { useGetAllRecipes };

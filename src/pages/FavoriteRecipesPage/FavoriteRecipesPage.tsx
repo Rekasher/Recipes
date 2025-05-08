@@ -1,30 +1,18 @@
 import { Dish } from '../../types/dishType.ts';
-import { useEffect, useState } from 'react';
-import { DishCard } from '../../components/Cards/DishCard.tsx';
+import { DishCard } from '../../components/DishCard/DishCard.tsx';
 import './FavoriteRecipesPage.css';
 import NoInfo from '../../components/NoInfo/NoInfo.tsx';
-import { useGetFavoriteFromTheLocal } from '../../hooks/useFavoriteDishes/useGetFavoriteFromTheLocal.ts';
+import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
 
 const FavoriteRecipesPage = () => {
-  const favorites = useGetFavoriteFromTheLocal();
-  const [dishesInfo, setDishesInfo] = useState<Dish[]>([]);
+  const { data } = useFavoriteContext();
 
-  useEffect(() => {
-    if (JSON.stringify(dishesInfo) !== JSON.stringify(favorites)) {
-      setDishesInfo(favorites);
-    }
-  }, [favorites]);
-
-  const handleUpdate = () => {
-    setDishesInfo([...favorites]);
-  };
-
-  return !dishesInfo || dishesInfo.length === 0 ? (
+  return !data || data.length === 0 ? (
     <NoInfo />
   ) : (
     <div className="card-grid">
-      {dishesInfo.map((dish: Dish) => (
-        <DishCard key={dish.id} dish={dish} onUpdate={handleUpdate} />
+      {data.map((dish: Dish) => (
+        <DishCard key={dish.id} dish={dish} />
       ))}
     </div>
   );

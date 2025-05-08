@@ -1,24 +1,24 @@
 import './DishCard.css';
 import { FC, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGetFavoriteFromTheLocal } from '../../hooks/useFavoriteDishes/useGetFavoriteFromTheLocal';
-import { RoutePath } from '../../routes/enum/routesEnum';
-import { Dish } from '../../types/dishType';
-import { checkTheFavoriteDish } from '../../utils/checkFavoriteDish/checkTheFavoriteDish';
-import { StarFavorite } from '../StarFavorite/StarFavorite';
-import { Trash } from '../Trash/Trash';
-import { CardBackGroundColor, CardTextColor } from './CardsEnum/CardEnum';
+import { RoutePath } from '../../routes/enum/routesEnum.ts';
+import { Dish } from '../../types/dishType.ts';
+import { checkTheFavoriteDish } from '../../utils/checkFavoriteDish/checkTheFavoriteDish.ts';
+import { StarFavorite } from '../StarFavorite/StarFavorite.tsx';
+import { Trash } from '../Trash/Trash.tsx';
+import { CardBackGroundColor, CardTextColor } from './DishCardEnum/CardEnum.ts';
+import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
 
 type PropDishCard = {
   dish: Dish;
-  onUpdate?: () => void;
 };
 
-const DishCard: FC<PropDishCard> = ({ dish, onUpdate }) => {
+const DishCard: FC<PropDishCard> = ({ dish }) => {
   const { image_url, title, publisher, id } = dish;
   const navigate = useNavigate();
-  const favoriteListDishes = useGetFavoriteFromTheLocal();
-  const isFavorite = checkTheFavoriteDish(dish, favoriteListDishes);
+  const { data } = useFavoriteContext();
+
+  const isFavorite = checkTheFavoriteDish(dish, data);
   const color = isFavorite ? CardTextColor.FAVORITE : CardTextColor.STATIC;
   const backGroundColor = isFavorite ? CardBackGroundColor.FAVORITE : CardBackGroundColor.STATIC;
 
@@ -41,11 +41,7 @@ const DishCard: FC<PropDishCard> = ({ dish, onUpdate }) => {
           <p className="card-text">{publisher}</p>
         </div>
         <div className="card-actions">
-          {isFavorite ? (
-            <Trash dish={dish} onUpdate={onUpdate} />
-          ) : (
-            <StarFavorite dish={dish} onUpdate={onUpdate} />
-          )}
+          {isFavorite ? <Trash dish={dish} /> : <StarFavorite dish={dish} />}
         </div>
       </div>
     </>
