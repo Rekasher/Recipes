@@ -1,0 +1,8 @@
+.search-input-text {
+  border: 1px solid rgba(0, 0, 0);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 3vh;
+  width: 40vw;
+  height: 6vh;
+}

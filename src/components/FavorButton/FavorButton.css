@@ -1,0 +1,9 @@
+.to-favorite {
+  cursor: pointer;
+  background-color: coral;
+  color: white;
+}
+
+.to-favorite:hover {
+  background-color: #bd5f3c;
+}

@@ -1,34 +1,30 @@
 import './NavigationBar.css';
-import {RoutePath} from "../../routes/enum/routesEnum.ts";
-import {useNavigate} from "react-router-dom";
-import {Home} from "../Home/Home.tsx";
-import {Favorite} from "../Favorite/Favorite.tsx";
-import {MagGlass} from "../MagGlass/MagGlass.tsx";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { RoutePath } from '../../routes/enum/routesEnum.ts';
+import { FavoriteHeart } from '../FavoriteHeart/FavoriteHeart.tsx';
+import { Home } from '../Home/Home.tsx';
+import { Search } from '../Search/Search.tsx';
+import { SearchStyle } from '../Search/SearchEnum/SearchEnum.ts';
 
 const NavigationBar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isListPage = location.pathname === RoutePath.LIST;
 
-    const navigate = useNavigate();
+  return (
+    <header className="navbar-component">
+      <div className="navbar">
+        <div className="navbar-logo" onClick={() => navigate(RoutePath.HOME)}>
+          <Home />
+        </div>
+        {isListPage && <Search searchVariant={SearchStyle.NOT_SEARCH_PAGE} />}
 
-    const handleNavigate = (path: string) => {
-        navigate(path);
-    };
-
-    return (
-        <header className="navbar-component">
-            <div className="navbar">
-                <div
-                    className="navbar-logo"
-                    onClick={() => handleNavigate(RoutePath.SEARCH)}
-                >
-                   <MagGlass callback={null}/>
-                </div>
-                <div className="options">
-                    <Home/>
-                    <Favorite/>
-                </div>
-            </div>
-        </header>
-    );
+        <div className="options">
+          <FavoriteHeart />
+        </div>
+      </div>
+    </header>
+  );
 };
 
-export {NavigationBar };
+export { NavigationBar };
