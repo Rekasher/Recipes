@@ -1,3 +1,10 @@
-import {IconHeart, IconHome, IconSearch, IconFidgetSpinner, IconStar, IconTrash} from "@tabler/icons-react"
+import {
+  IconHeart,
+  IconHome,
+  IconSearch,
+  IconFidgetSpinner,
+  IconStar,
+  IconTrash,
+} from '@tabler/icons-react';
 
-export {IconHeart, IconHome, IconSearch, IconFidgetSpinner, IconStar, IconTrash};
+export { IconHeart, IconHome, IconSearch, IconFidgetSpinner, IconStar, IconTrash };

@@ -1,28 +1,27 @@
-import {Dish} from "../../types/dishType.ts";
-import {FC} from "react";
-import {useDeleteFavoriteFromTheLocal} from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
-import './Trash.css'
-import {IconTrash} from "../../Icons/Icons.tsx"
+import { Dish } from '../../types/dishType.ts';
+import { FC, MouseEvent } from 'react';
+import './Trash.css';
+import { IconTrash } from '../../Icons/Icons.tsx';
+import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
+import { useDeleteFavorite } from '../../hooks/useFavoriteDishes/useDeleteFavorite.ts';
 
 type PropTrash = {
-    dish: Dish;
-    onUpdate?: () => void;
-}
-
-const Trash: FC<PropTrash> = ({dish, onUpdate}) => {
-
-    const handleDeleteFromFavorite = (e: React.MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation();
-        useDeleteFavoriteFromTheLocal(dish);
-        if (onUpdate) onUpdate();
-    };
-
-
-    return (
-        <div className="trash" onClick={handleDeleteFromFavorite}>
-            <IconTrash color="black"/>
-        </div>
-    );
+  dish: Dish;
 };
 
-export {Trash};
+const Trash: FC<PropTrash> = ({ dish }) => {
+  const { setFavorite } = useFavoriteContext();
+
+  const handleDeleteFromFavorite = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setFavorite(useDeleteFavorite(dish));
+  };
+
+  return (
+    <div className="trash" onClick={handleDeleteFromFavorite}>
+      <IconTrash color="black" />
+    </div>
+  );
+};
+
+export { Trash };

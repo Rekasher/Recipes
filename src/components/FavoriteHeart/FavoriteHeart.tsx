@@ -1,23 +1,16 @@
-import {RoutePath} from "../../routes/enum/routesEnum.ts";
-import {useNavigate} from "react-router-dom";
-import "./FavoriteHeart.css"
-import {IconHeart} from "../../Icons/Icons.tsx";
+import { RoutePath } from '../../routes/enum/routesEnum';
+import { useNavigate } from 'react-router-dom';
+import './FavoriteHeart.css';
+import { IconHeart } from '../../Icons/Icons';
 
 const FavoriteHeart = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-
-    const handleNavigate = (path: string) => {
-        navigate(path);
-    }
-
-    return (
-        <div className="favorite"
-             onClick={() => handleNavigate(RoutePath.FAVORITE)}
-             style={{cursor: "pointer"}}>
-            <IconHeart color="black"/>
-        </div>
-    );
+  return (
+    <div className="favorite-heart" onClick={() => navigate(RoutePath.FAVORITE)}>
+      <IconHeart color="black" />
+    </div>
+  );
 };
 
-export {FavoriteHeart};
+export { FavoriteHeart };

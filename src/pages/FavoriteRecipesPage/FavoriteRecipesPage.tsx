@@ -1,53 +1,21 @@
-import {Dish} from "../../types/dishType.ts";
-import {DishCard} from "../../components/Cards/DishCard.tsx";
-import {useGetFavoriteFromTheLocal,} from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
-import {PageLayout} from "../PageLayot.tsx";
-import {useEffect, useState} from "react";
-import "./FavoriteRecipesPage.css"
+import { Dish } from '../../types/dishType.ts';
+import { DishCard } from '../../components/DishCard/DishCard.tsx';
+import './FavoriteRecipesPage.css';
+import NoInfo from '../../components/NoInfo/NoInfo.tsx';
+import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
 
 const FavoriteRecipesPage = () => {
+  const { favorite } = useFavoriteContext();
 
-    const [dishesInfo, setDishesInfo] = useState<Dish[]>([]);
+  if (!favorite || favorite.length === 0) return <NoInfo />;
 
-    const loadFavoriteDishes = () => {
-        const favorites = useGetFavoriteFromTheLocal();
-        setDishesInfo(favorites);
-    }
-
-    useEffect(() => {
-        loadFavoriteDishes();
-
-        const onStorageChange = (e: StorageEvent) => {
-            if (e.key === 'Favorite') {
-                loadFavoriteDishes();
-            }
-        };
-
-        window.addEventListener("storage", onStorageChange);
-
-        return () => {
-            window.removeEventListener("storage", onStorageChange);
-        };
-
-    }, []);
-
-
-    return (
-        <PageLayout>
-            {
-                (!dishesInfo || dishesInfo.length === 0) ? (
-                    <div className="noDishes">No dishes found.</div>
-                ) : (
-                    <div className="card-grid">
-                        {dishesInfo.map((dish: Dish) => (
-                            <DishCard key={dish.id} dish={dish} onUpdate={loadFavoriteDishes}/>
-                        ))}
-                    </div>
-                )
-            }
-        </PageLayout>
-    )
+  return (
+    <div className="card-grid">
+      {favorite.map((dish: Dish) => (
+        <DishCard key={dish.id} dish={dish} />
+      ))}
+    </div>
+  );
 };
 
-export {FavoriteRecipesPage};
-
+export { FavoriteRecipesPage };
