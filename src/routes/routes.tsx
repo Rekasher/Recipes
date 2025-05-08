@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { Layout } from '../components/Layot/Layot.tsx';
-import { DishesProvider } from '../context/Dish/DishContext.tsx';
+import { DishesProvider } from '../context/Dish/DishesContext.tsx';
 import { FavoriteRecipesPage } from '../pages/FavoriteRecipesPage/FavoriteRecipesPage.tsx';
 import { RecipePage } from '../pages/RecipePage/RecipePage.tsx';
 import { RecipesListPage } from '../pages/RecipesListPage/RecipesListPage.tsx';

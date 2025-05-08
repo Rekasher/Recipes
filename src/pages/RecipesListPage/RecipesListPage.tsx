@@ -1,29 +1,20 @@
 import { DishCard } from '../../components/DishCard/DishCard.tsx';
 import { Dish } from '../../types/dishType.ts';
 import './RecipesListPage.css';
-import { useEffect, useState } from 'react';
 import NoInfo from '../../components/NoInfo/NoInfo.tsx';
 import { Spinner } from '../../components/Spinner/Spinner.tsx';
-import { useDishesProvider } from '../../context/Dish/DishContext.tsx';
+import { useDishesProvider } from '../../context/Dish/DishesContext.tsx';
 
 const RecipesListPage = () => {
-  const [dishesInfo, setDishesInfo] = useState<Dish[]>([]);
-
-  const { data, isLoading, error } = useDishesProvider();
-
-  useEffect(() => {
-    if (data) {
-      setDishesInfo(data);
-    }
-  }, [data]);
+  const { dish, isLoading, error } = useDishesProvider();
 
   if (isLoading) return <Spinner />;
   if (error) throw error;
-  if (!dishesInfo || dishesInfo.length === 0) return <NoInfo />;
+  if (!dish || dish.length === 0) return <NoInfo />;
 
   return (
     <div className="card-grid">
-      {dishesInfo.map((dish: Dish) => (
+      {dish.map((dish: Dish) => (
         <DishCard key={dish.id} dish={dish} />
       ))}
     </div>

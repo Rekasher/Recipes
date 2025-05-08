@@ -1,28 +1,12 @@
-import { useEffect, useState } from 'react';
 import './RecipePage.css';
 import { FavorButton } from '../../components/FavorButton/FavorButton.tsx';
 import NoInfo from '../../components/NoInfo/NoInfo.tsx';
 import { Spinner } from '../../components/Spinner/Spinner.tsx';
-import { useGetFavorite } from '../../hooks/useFavoriteDishes/useGetFavorite.ts';
 import { Ingredient } from '../../types/recipeType.ts';
-import { checkTheFavoriteDish } from '../../utils/checkFavoriteDish/checkTheFavoriteDish.ts';
 import { useRecipeProvider } from '../../context/Recipe/RecipeContext.tsx';
 
 const RecipePage = () => {
-  const { data: recipeData, isLoading, error } = useRecipeProvider();
-  const favorList = useGetFavorite();
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  useEffect(() => {
-    if (!recipeData) return;
-
-    const fav = checkTheFavoriteDish(recipeData, favorList);
-    setIsFavorite(fav);
-  }, [recipeData, favorList]);
-
-  const handleToUpdate = () => {
-    setIsFavorite((prev) => !prev);
-  };
+  const { recipe: recipeData, isLoading, error } = useRecipeProvider();
 
   if (isLoading) return <Spinner />;
   if (error) throw error;
@@ -50,7 +34,7 @@ const RecipePage = () => {
             >
               Details
             </button>
-            <FavorButton isFavor={isFavorite} dish={recipeData} onUpdate={handleToUpdate} />
+            <FavorButton />
           </div>
         </div>
       </div>

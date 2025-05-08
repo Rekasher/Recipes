@@ -10,11 +10,11 @@ type PropTrash = {
 };
 
 const Trash: FC<PropTrash> = ({ dish }) => {
-  const { setData } = useFavoriteContext();
+  const { setFavorite } = useFavoriteContext();
 
   const handleDeleteFromFavorite = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    setData(useDeleteFavorite(dish));
+    setFavorite(useDeleteFavorite(dish));
   };
 
   return (

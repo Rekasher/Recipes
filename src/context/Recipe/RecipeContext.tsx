@@ -4,13 +4,13 @@ import { useSearchParams } from 'react-router-dom';
 import { useGetRecipe } from '../../hooks/useGetRecipeInfo/useGetRecipeInfo.tsx';
 
 type RecipeContext = {
-  data: Recipe | null;
+  recipe: Recipe | null;
   isLoading: boolean;
   error: Error | string | null;
 };
 
 const Context = createContext<RecipeContext>({
-  data: null,
+  recipe: null,
   isLoading: true,
   error: null,
 });
@@ -19,12 +19,12 @@ const useRecipeProvider = () => useContext(Context);
 
 const RecipeProvider: FC<PropsWithChildren> = ({ children }) => {
   const [searchParams] = useSearchParams();
-  const { data, isLoading, error } = useGetRecipe(searchParams.get('id') || '');
+  const { data: recipe, isLoading, error } = useGetRecipe(searchParams.get('id') || '');
 
   return (
     <Context.Provider
       value={{
-        data,
+        recipe,
         isLoading,
         error,
       }}

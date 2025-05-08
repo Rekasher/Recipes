@@ -1,34 +1,42 @@
 import { Dish } from '../../types/dishType.ts';
 import { createContext, FC, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { useGetFavorite } from '../../hooks/useFavoriteDishes/useGetFavorite.ts';
+import { checkTheFavoriteDish } from '../../utils/checkFavoriteDish/checkTheFavoriteDish.ts';
 
 type FavoriteContext = {
-  data: Dish[] | [];
-  setData: (data: Dish[]) => void;
+  favorite: Dish[] | [];
+  setFavorite: (data: Dish[]) => void;
+  isFavorite: (data: Dish) => boolean;
 };
 
 const Context = createContext<FavoriteContext>({
-  data: [],
-  setData: () => {},
+  favorite: [],
+  setFavorite: () => {},
+  isFavorite: () => false,
 });
 
 const useFavoriteContext = () => useContext(Context);
 
 const FavoriteProvider: FC<PropsWithChildren> = ({ children }) => {
-  const favorites = useGetFavorite();
-  const [data, setData] = useState<Dish[]>([]);
+  const favoriteDishes = useGetFavorite();
+  const [favorite, setFavorite] = useState<Dish[]>([]);
 
   useEffect(() => {
-    if (JSON.stringify(data) !== JSON.stringify(favorites)) {
-      setData(favorites);
+    if (JSON.stringify(favorite) !== JSON.stringify(favoriteDishes)) {
+      setFavorite(favoriteDishes);
     }
-  }, [favorites]);
+  }, [favoriteDishes]);
+
+  const isFavorite = (dish: Dish) => {
+    return checkTheFavoriteDish(dish, favorite);
+  };
 
   return (
     <Context.Provider
       value={{
-        data,
-        setData,
+        favorite,
+        setFavorite,
+        isFavorite,
       }}
     >
       {children}

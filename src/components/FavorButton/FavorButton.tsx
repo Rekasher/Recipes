@@ -1,24 +1,22 @@
-import { Dish } from '../../types/dishType';
 import { FC } from 'react';
 import './FavorButton.css';
 import { useDeleteFavorite } from '../../hooks/useFavoriteDishes/useDeleteFavorite.ts';
 import { usePutFavorite } from '../../hooks/useFavoriteDishes/usePutFavorite.ts';
+import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
+import { useRecipeProvider } from '../../context/Recipe/RecipeContext.tsx';
 
-type PropAddButton = {
-  isFavor: boolean;
-  dish: Dish;
-  onUpdate?: () => void;
-};
+const FavorButton: FC = () => {
+  const { setFavorite } = useFavoriteContext();
+  const { recipe: dish } = useRecipeProvider();
+  const { isFavorite } = useFavoriteContext();
 
-const FavorButton: FC<PropAddButton> = ({ isFavor, dish, onUpdate }) => {
   const handleToFavorite = () => {
-    isFavor ? useDeleteFavorite(dish) : usePutFavorite(dish);
-    onUpdate && onUpdate();
+    isFavorite(dish!) ? setFavorite(useDeleteFavorite(dish!)) : setFavorite(usePutFavorite(dish!));
   };
 
   return (
     <button className="to-favorite" onClick={handleToFavorite}>
-      {isFavor ? 'Remove From Favorite' : 'Add Favorite'}
+      {isFavorite(dish!) ? 'Remove From Favorite' : 'Add Favorite'}
     </button>
   );
 };

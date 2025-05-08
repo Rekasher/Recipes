@@ -16,9 +16,9 @@ type PropDishCard = {
 const DishCard: FC<PropDishCard> = ({ dish }) => {
   const { image_url, title, publisher, id } = dish;
   const navigate = useNavigate();
-  const { data } = useFavoriteContext();
+  const { favorite } = useFavoriteContext();
 
-  const isFavorite = checkTheFavoriteDish(dish, data);
+  const isFavorite = checkTheFavoriteDish(dish, favorite);
   const color = isFavorite ? CardTextColor.FAVORITE : CardTextColor.STATIC;
   const backGroundColor = isFavorite ? CardBackGroundColor.FAVORITE : CardBackGroundColor.STATIC;
 

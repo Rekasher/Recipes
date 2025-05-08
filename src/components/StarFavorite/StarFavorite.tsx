@@ -11,11 +11,11 @@ type PropStarFavorite = {
 };
 
 const StarFavorite: FC<PropStarFavorite> = ({ dish }) => {
-  const { setData } = useFavoriteContext();
+  const { setFavorite } = useFavoriteContext();
 
   const handleToFavorite = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    setData(usePutFavorite(dish));
+    setFavorite(usePutFavorite(dish));
   };
 
   return (
