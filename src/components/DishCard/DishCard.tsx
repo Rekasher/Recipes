@@ -7,8 +7,7 @@ import { RoutePath } from '../../routes/enum/routesEnum.ts';
 import { Dish } from '../../types/dishType.ts';
 import { StarFavorite } from '../StarFavorite/StarFavorite.tsx';
 import { Trash } from '../Trash/Trash.tsx';
-import './DishCard.css';
-import { CardBackGroundColor } from './DishCardEnum/CardEnum.ts';
+import styles from './DishCard.module.css';
 
 type PropDishCard = {
   dish: Dish;
@@ -19,9 +18,7 @@ const DishCard: FC<PropDishCard> = ({ dish }) => {
   const navigate = useNavigate();
   const { isFavorite } = useFavoriteContext();
 
-  const backGroundColor = isFavorite(dish)
-    ? CardBackGroundColor.FAVORITE
-    : CardBackGroundColor.STATIC;
+  const backGroundColor = isFavorite(dish) ? styles.cardColorFavorite : styles.cardColorStatic;
 
   const navigationLink = useMemo(() => {
     return `${RoutePath.RECIPE}?id=${id}`;
@@ -29,19 +26,15 @@ const DishCard: FC<PropDishCard> = ({ dish }) => {
 
   return (
     <>
-      <div
-        className="card"
-        onClick={() => navigate(navigationLink)}
-        style={{ backgroundColor: backGroundColor }}
-      >
-        <div className="image-wrapper">
-          <img src={image_url} alt="Image" className="card-image" />
+      <div className={`${styles.card} ${backGroundColor}`} onClick={() => navigate(navigationLink)}>
+        <div className={styles.imageWrapper}>
+          <img src={image_url} alt="Image" className={styles.cardImage} />
         </div>
-        <div className="card-content">
-          <h3 className="card-title">{title}</h3>
-          <p className="card-text">{publisher}</p>
+        <div className={styles.cardContent}>
+          <h3 className={styles.cardTitle}>{title}</h3>
+          <p className={styles.cardText}>{publisher}</p>
         </div>
-        <div className="card-actions">
+        <div className={styles.cardActions}>
           {isFavorite(dish) ? <Trash dish={dish} /> : <StarFavorite dish={dish} />}
         </div>
       </div>
