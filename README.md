@@ -1,54 +1,33 @@
-# React + TypeScript + Vite
+## Find recipes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Avialble Scripts
 
-Currently, two official plugins are available:
+In the project directory, you can run:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### `npm run dev`
 
-## Expanding the ESLint configuration
+Runs the App with vite
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### `npm run build`
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Build the project to the dist directory
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### `npm run lint`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Runs esLint with your custom properties
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### `npm run preview`
+
+Runs a local wev server that serves the built solution from dist
+
+The main idea of an app is to find some new dishes and look on their recipes.
+
+App have several pages with routing between them.
+
+First of all you'll see the search page with autofocus search component.
+
+When you input some text on this component and click on search Icon or Enter,
+App would find the dishes that suit your search request.
+Then you will see List page with dishes cards that describe the dish
+Card have some actions on this page: you have star and trash icon buttons that change each other( When you click star, you add dish to favorites; When you click on trash you delete dish from favorites)
+Then if you click on the card you'll redirect to recipe page with whole info about dish and where you also have a functionality to add or remove dish to/from favorite List.

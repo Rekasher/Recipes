@@ -1,9 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
+import { API_LINK } from '../utils/constants.ts';
 
 const api = axios.create({
-    headers: {
-        'Content-Type': 'application/json'
-    }
+  baseURL: API_LINK,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-export {api};
+export { api };
