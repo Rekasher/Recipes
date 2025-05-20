@@ -1,11 +1,13 @@
 import { FC } from 'react';
 
 import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
-import { useRecipeProvider } from '../../context/Recipe/RecipeContext.tsx';
 import './FavorButton.css';
+import { useGetRecipe } from '../../hooks/useGetRecipeInfo/useGetRecipeInfo.tsx';
+import { useSearchParams } from 'react-router-dom';
 
 const FavorButton: FC = () => {
-  const { data } = useRecipeProvider();
+  const [searchParams] = useSearchParams();
+  const { data } = useGetRecipe(searchParams.get('id') || '');
   const { isFavorite, putToFavorite, deleteFromFavorite, takeDish } = useFavoriteContext();
   const dish = takeDish(data!);
 

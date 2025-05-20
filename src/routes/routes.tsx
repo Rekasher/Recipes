@@ -1,9 +1,7 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import { Layout } from '../components/Layot/Layot.tsx';
-import { DishesProvider } from '../context/Dish/DishesContext.tsx';
 import { FavoriteProvider } from '../context/Favorite/FavoriteContext.tsx';
-import { RecipeProvider } from '../context/Recipe/RecipeContext.tsx';
 import { FavoriteRecipesPage } from '../pages/FavoriteRecipesPage/FavoriteRecipesPage.tsx';
 import { RecipePage } from '../pages/RecipePage/RecipePage.tsx';
 import { RecipesListPage } from '../pages/RecipesListPage/RecipesListPage.tsx';
@@ -29,19 +27,11 @@ const router = createBrowserRouter([
       },
       {
         path: RoutePath.LIST,
-        element: (
-          <DishesProvider>
-            <RecipesListPage />
-          </DishesProvider>
-        ),
+        element: <RecipesListPage />,
       },
       {
         path: RoutePath.RECIPE,
-        element: (
-          <RecipeProvider>
-            <RecipePage />
-          </RecipeProvider>
-        ),
+        element: <RecipePage />,
       },
       {
         path: RoutePath.FAVORITE,

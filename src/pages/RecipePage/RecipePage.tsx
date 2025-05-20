@@ -1,18 +1,18 @@
 import { FavorButton } from '../../components/FavorButton/FavorButton.tsx';
 import NoInfo from '../../components/NoInfo/NoInfo.tsx';
 import { Spinner } from '../../components/Spinner/Spinner.tsx';
-import { useRecipeProvider } from '../../context/Recipe/RecipeContext.tsx';
 import { Ingredient } from '../../types/recipeType.ts';
 import './RecipePage.css';
+import { useSearchParams } from 'react-router-dom';
+import { useGetRecipe } from '../../hooks/useGetRecipeInfo/useGetRecipeInfo.tsx';
 
 const RecipePage = () => {
-  const { data, isLoading, error } = useRecipeProvider();
+  const [searchParams] = useSearchParams();
+  const { data, isLoading, error } = useGetRecipe(searchParams.get('id') || '');
 
   if (isLoading) return <Spinner />;
   if (error) throw error;
   if (!data) return <NoInfo />;
-
-  console.log('recipeData: ', data);
 
   return (
     <div className="main">
