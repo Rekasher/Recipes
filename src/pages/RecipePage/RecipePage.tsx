@@ -6,32 +6,31 @@ import { Ingredient } from '../../types/recipeType.ts';
 import './RecipePage.css';
 
 const RecipePage = () => {
-  const { recipe: recipeData, isLoading, error } = useRecipeProvider();
+  const { data, isLoading, error } = useRecipeProvider();
 
   if (isLoading) return <Spinner />;
   if (error) throw error;
-  if (!recipeData) return <NoInfo />;
+  if (!data) return <NoInfo />;
+
+  console.log('recipeData: ', data);
 
   return (
     <div className="main">
       <div className="preview">
         <div className="image-wrapper">
-          <img src={recipeData.image_url} alt="Image" className="card-image" />
+          <img src={data.image_url} alt="Image" className="card-image" />
         </div>
         <div className="preview-info">
           <div className="preview-text">
-            <div className="title">{recipeData.title}</div>
-            <div className="publisher">{recipeData.publisher}</div>
+            <div className="title">{data.title}</div>
+            <div className="publisher">{data.publisher}</div>
           </div>
           <div className="preview-service">
-            <div className="serving">Serving size: {recipeData.servings}</div>
-            <div className="cooking_time">Cooking time: {recipeData.cooking_time}</div>
+            <div className="serving">Serving size: {data.servings}</div>
+            <div className="cooking_time">Cooking time: {data.cooking_time}</div>
           </div>
           <div className="preview-buttons">
-            <button
-              className="details"
-              onClick={() => (window.location.href = recipeData.source_url)}
-            >
+            <button className="details" onClick={() => (window.location.href = data.source_url)}>
               Details
             </button>
             <FavorButton />
@@ -41,7 +40,7 @@ const RecipePage = () => {
       <h2>Ingredients</h2>
       <div className="line" />
       <ul>
-        {recipeData.ingredients!.map((ingredient: Ingredient, pos: number) => (
+        {data.ingredients!.map((ingredient: Ingredient, pos: number) => (
           <li key={pos}>
             {`${ingredient.quantity ?? ''} ${ingredient.unit} ${ingredient.description}`}
           </li>

@@ -5,9 +5,9 @@ import { useRecipeProvider } from '../../context/Recipe/RecipeContext.tsx';
 import './FavorButton.css';
 
 const FavorButton: FC = () => {
-  const { recipe } = useRecipeProvider();
+  const { data } = useRecipeProvider();
   const { isFavorite, putToFavorite, deleteFromFavorite, takeDish } = useFavoriteContext();
-  const dish = takeDish(recipe!);
+  const dish = takeDish(data!);
 
   const handleToFavorite = () => {
     if (isFavorite(dish!)) {

@@ -35,7 +35,7 @@ const DishesProvider: FC<PropsWithChildren> = ({ children }) => {
       value={{
         dishes,
         isLoading,
-        error: error && new Error(error),
+        error: error && new Error('Bad request'),
       }}
     >
       {children}
