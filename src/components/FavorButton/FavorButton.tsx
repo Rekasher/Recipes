@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
 import './FavorButton.css';
-import { useGetRecipe } from '../../hooks/useGetRecipeInfo/useGetRecipeInfo.tsx';
+import { useGetRecipe } from '../../hooks/useGetRecipeInfo/useGetRecipeInfo.ts';
 import { useSearchParams } from 'react-router-dom';
 
 const FavorButton: FC = () => {

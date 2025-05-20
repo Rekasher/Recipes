@@ -4,7 +4,7 @@ import { Spinner } from '../../components/Spinner/Spinner.tsx';
 import { Ingredient } from '../../types/recipeType.ts';
 import './RecipePage.css';
 import { useSearchParams } from 'react-router-dom';
-import { useGetRecipe } from '../../hooks/useGetRecipeInfo/useGetRecipeInfo.tsx';
+import { useGetRecipe } from '../../hooks/useGetRecipeInfo/useGetRecipeInfo.ts';
 
 const RecipePage = () => {
   const [searchParams] = useSearchParams();
