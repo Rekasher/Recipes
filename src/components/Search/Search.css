@@ -1,14 +1,14 @@
-.search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
+.search-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
-.search-bar {
-    display: flex;
-    align-items: center;
-    padding: 4px 8px;
-    border-radius: 4px;
+.not-search-page {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
 }

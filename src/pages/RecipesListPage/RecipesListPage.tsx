@@ -1,44 +1,26 @@
-import {DishCard} from "../../components/Cards/DishCard.tsx";
-import {useGetAllRecipes} from "../../services/useAllRecipes/getAllRecipes.ts";
-import {Dish} from "../../types/dishType.ts";
+import { DishCard } from '../../components/DishCard/DishCard.tsx';
+import NoInfo from '../../components/NoInfo/NoInfo.tsx';
+import { Spinner } from '../../components/Spinner/Spinner.tsx';
+import { Dish } from '../../types/dishType.ts';
 import './RecipesListPage.css';
-import {PageLayout} from "../PageLayot.tsx";
-import {useEffect, useState} from "react";
-import {useLocation} from "react-router-dom";
-import {useDish} from "../../context/Dish/DishProvider.tsx";
+import { useSearchParams } from 'react-router-dom';
+import { useGetAllRecipes } from '../../hooks/useAllRecipes/useGetAllRecipes.ts';
 
 const RecipesListPage = () => {
+  const [searchParams] = useSearchParams();
+  const { data, isLoading, error } = useGetAllRecipes(searchParams.get('value') || '');
 
-    const [dishesInfo, setDishesInfo] = useState<Dish[]>([]);
-    const location = useLocation();
-    const {setDish} = useDish();
-    setDish(decodeURIComponent(location.search.split('=')[1]));
-    const {data, loading, error} = useGetAllRecipes();
+  if (isLoading) return <Spinner />;
+  if (error) throw error;
+  if (!data || data.length === 0) return <NoInfo />;
 
-    useEffect(() => {
-        if (data) {
-            setDishesInfo(data);
-        }
-    }, [data]);
-
-    const handleUpdate = () => {
-        setDishesInfo([...dishesInfo]);
-    }
-
-    return (
-        <PageLayout loading={loading} error={error!}>
-            {
-                (!dishesInfo || dishesInfo.length === 0) ? (
-                    <div className="noDishes">No dishes found.</div>
-                ) : (
-                    <div className="card-grid">
-                        {dishesInfo.map((dish: Dish) => (
-                            <DishCard key={dish.id} dish={dish} onUpdate={handleUpdate}/>
-                        ))}
-                    </div>
-                )
-            }
-        </PageLayout>);
+  return (
+    <div className="card-grid">
+      {data.map((dish: Dish) => (
+        <DishCard key={dish.id} dish={dish} />
+      ))}
+    </div>
+  );
 };
 
-export {RecipesListPage};
+export { RecipesListPage };

@@ -1,7 +1,6 @@
 enum SearchStyle {
-    SEARCH = "search",
-    NAVIGATION = "search-bar",
+  SEARCH_PAGE = 'search',
+  NOT_SEARCH_PAGE = 'not-search',
 }
 
-
-export {SearchStyle}
+export { SearchStyle };

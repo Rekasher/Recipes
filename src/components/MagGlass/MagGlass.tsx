@@ -1,20 +1,18 @@
-import {FC} from "react";
-import "./MagGlass.css"
-import {IconSearch} from "../../Icons/Icons.tsx";
+import { FC } from 'react';
+
+import './MagGlass.css';
+import { IconSearch } from '@tabler/icons-react';
 
 type PropMagGlass = {
-    callback: (() => void) | null;
-}
-
-const MagGlass: FC<PropMagGlass> = ({callback}) => {
-    return (
-        <div className='magGlass'
-             style={{cursor: 'pointer'}}
-             onClick={callback!}
-        >
-            <IconSearch color="black"/>
-        </div>
-    );
+  callback: () => void;
 };
 
-export {MagGlass};
+const MagGlass: FC<PropMagGlass> = ({ callback }) => {
+  return (
+    <div className="mag-glass" onClick={callback}>
+      <IconSearch color="black" />
+    </div>
+  );
+};
+
+export { MagGlass };

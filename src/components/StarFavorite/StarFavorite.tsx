@@ -1,27 +1,27 @@
-import "./StarFavorite.css"
-import {Dish} from "../../types/dishType.ts";
-import {FC} from "react";
-import {usePutFavoriteToLocal} from "../../services/useFavoriteDishes/makeFavoriteDishes.ts";
-import {IconStar} from "../../Icons/Icons.tsx";
+import { FC, MouseEvent } from 'react';
+
+import { useFavoriteContext } from '../../context/Favorite/FavoriteContext.tsx';
+import { Dish } from '../../types/dishType.ts';
+import './StarFavorite.css';
+import { IconStar } from '@tabler/icons-react';
 
 type PropStarFavorite = {
-    dish: Dish
-    onUpdate?: () => void;
-}
-
-const StarFavorite: FC<PropStarFavorite> = ({dish, onUpdate}) => {
-
-    const handleToFavorite = (e: React.MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation();
-        usePutFavoriteToLocal(dish)
-        if (onUpdate) onUpdate();
-    };
-
-    return (
-        <div className="star-favorite" onClick={handleToFavorite}>
-            <IconStar color="black"/>
-        </div>
-    );
+  dish: Dish;
 };
 
-export {StarFavorite};
+const StarFavorite: FC<PropStarFavorite> = ({ dish }) => {
+  const { putToFavorite } = useFavoriteContext();
+
+  const handleToFavorite = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    putToFavorite(dish);
+  };
+
+  return (
+    <div className="star-favorite" onClick={handleToFavorite}>
+      <IconStar color="black" />
+    </div>
+  );
+};
+
+export { StarFavorite };

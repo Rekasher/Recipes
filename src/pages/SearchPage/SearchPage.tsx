@@ -1,15 +1,7 @@
-import "./SearchPage.css"
-import {PageLayout} from "../PageLayot.tsx";
-import {Search} from "../../components/Search/Search.tsx";
+import { Search } from '../../components/Search/Search.tsx';
+import { SearchStyle } from '../../components/Search/SearchEnum/SearchEnum.ts';
+import './SearchPage.css';
 
-const SearchPage = () => {
+const SearchPage = () => <Search searchVariant={SearchStyle.SEARCH_PAGE} />;
 
-
-    return (
-        <PageLayout>
-            <Search/>
-        </PageLayout>
-    );
-};
-
-export {SearchPage};
+export { SearchPage };

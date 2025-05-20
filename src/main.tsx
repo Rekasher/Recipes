@@ -1,14 +1,18 @@
-import {StrictMode} from 'react'
-import "./main.css"
-import {createRoot} from 'react-dom/client'
-import {RouterProvider} from "react-router-dom";
-import {router} from "./routes/routes.tsx";
-import {DishProvider} from "./context/Dish/DishProvider.tsx";
+import { StrictMode } from 'react';
+
+import { createRoot } from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+
+import './main.css';
+import { router } from './routes/routes.tsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-        <DishProvider>
-            <RouterProvider router={router}/>
-        </DishProvider>
-    </StrictMode>,
-)
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  </StrictMode>,
+);
